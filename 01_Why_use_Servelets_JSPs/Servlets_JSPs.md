@@ -32,3 +32,27 @@ HTTP는 요청과 응답의 끊임없는 주고 받는 구조이다.
 HTTP 응답 안에 HTML이 들어있다. HTTP 응답에는 HTML 뿐만 아니라, 헤더 정보도 들어있다.
 브라우저는 헤더 정보로 컨텐츠를 어떻게 화면에 보여줄지에 대한 힌트를 얻는다.
 
+### 내가 서버라면 요청에 들어있는 정보 중 어떤 것이 궁금할까요?
+HTTP메소드로 가장 많이 사용되는 것은 GET과 POST이다.
+- GET: asking the server to GET the page
+- POST: giving the server what the user typed into the form
+
+### 단순한 요청은 GET, 사용자 데이터를 보내려면 POST
+GET의 핵심은 서버로부터 뭔가를 돌려 받는다(get back).
+POST는 무언가를 request할 수 있고 동시에 데이터를 서버로 send할 수 있다.
+
+### HTTP GET도 적은 데이터를 보낼 수 있다.
+GET 대신 POST를 새용해야 하는 이유
+1. GET으로 보낼 수 있는 글자의 수는 제한되어 있다.
+2. GET의 데이터 전송 방식은 URL 주소 뒤에 붙이므로 어떤 정보든 다 노출이 된다.
+3. 위의 두 가지 이유로, 사용자는 GET으로 전송하는 URL은 즐겨찾기에 등록할 수 있지만, POST는 대부분 그렇지 못한다.
+
+### GET 해부하기
+```http
+GET /select/selectBeerTaste.jsp?color=dark&tast=malty HTTP/1.1
+```
+GET /select/selectBeerTaste.jsp?color=dark&tast=malty HTTP/1.1: 요청 라인
+GET: HTTP 메소드
+/select/selectBeerTaste.jsp: 웹 서버 상 자원에 대한 경로
+?color=dark&tast=malty: 파라미터는 ?문자로 시작하며, request URL 첫 번째 부분에 위치한다.
+HTTP/1.1: 웹 브라우저가 요구하는 프로토콜 버전
