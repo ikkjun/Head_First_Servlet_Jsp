@@ -48,11 +48,27 @@ GET 대신 POST를 새용해야 하는 이유
 3. 위의 두 가지 이유로, 사용자는 GET으로 전송하는 URL은 즐겨찾기에 등록할 수 있지만, POST는 대부분 그렇지 못한다.
 
 ### GET 해부하기
+자원에 대한 경로, URL에 붙는 파라미터들은 request line에 포함된다.
 ```http
 GET /select/selectBeerTaste.jsp?color=dark&tast=malty HTTP/1.1
+Host: www.wickedlysmart.com
+...
 ```
 GET /select/selectBeerTaste.jsp?color=dark&tast=malty HTTP/1.1: 요청 라인
 GET: HTTP 메소드
 /select/selectBeerTaste.jsp: 웹 서버 상 자원에 대한 경로
 ?color=dark&tast=malty: 파라미터는 ?문자로 시작하며, request URL 첫 번째 부분에 위치한다.
 HTTP/1.1: 웹 브라우저가 요구하는 프로토콜 버전
+Host: www.wickedlysmart.com...: request header
+
+### POST 해부하기
+HTTP POST 요청은 브라우저가 서버에 복잡한 요청을 할 수 있게 하기 위해 설계되었다.
+서버로 보내는 데이터를 message body(메시지 몸체) 또는 payload(짐)라고 부른다.
+```http
+POST /advisor/selectBeerTaste.do HTTP/1.1
+Host: www.wickedlysmart.com
+...
+color=dark&tast=malty
+```
+color=dark&tast=malty: message body(payload)
+파라미터가 밑에 있기 때문에 길이의 제한이 없다. (GET은 파라미터를 Request line에 두어야 하므로 길이 제한이 있다.)
