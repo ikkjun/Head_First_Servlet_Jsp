@@ -52,7 +52,9 @@ GET 대신 POST를 새용해야 하는 이유
 ```http
 GET /select/selectBeerTaste.jsp?color=dark&tast=malty HTTP/1.1
 Host: www.wickedlysmart.com
-...
+.
+.
+.
 ```
 GET /select/selectBeerTaste.jsp?color=dark&tast=malty HTTP/1.1: 요청 라인
 GET: HTTP 메소드
@@ -67,7 +69,9 @@ HTTP POST 요청은 브라우저가 서버에 복잡한 요청을 할 수 있게
 ```http
 POST /advisor/selectBeerTaste.do HTTP/1.1
 Host: www.wickedlysmart.com
-...
+.
+.
+.
 color=dark&tast=malty
 ```
 color=dark&tast=malty: message body(payload)
