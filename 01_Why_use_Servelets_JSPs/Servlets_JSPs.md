@@ -76,3 +76,5 @@ color=dark&tast=malty
 ```
 color=dark&tast=malty: message body(payload)
 파라미터가 밑에 있기 때문에 길이의 제한이 없다. (GET은 파라미터를 Request line에 두어야 하므로 길이 제한이 있다.)
+
+### HTTP응답 해부하기, 그리고 MIME type란 무엇인가?
