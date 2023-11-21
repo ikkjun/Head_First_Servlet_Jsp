@@ -102,8 +102,26 @@ http://www.wickedlysmart.com:80/beeradvice/select/beer1.html
 
 - http://: Protocol: 서버에게 어떤 communications protocal이 사용될지 알려준다.(여기서는 http)
 - www.wickedlysmart.com: server: 질제 서버의 유일한 이름. 이 이름은 유일한 IP address와 대응된다. IP주소는 숫자로 구성되며 "xxx.yyy.zzz.aaa"의 형태를 갖는다. 그러나 서버 이름이 더 기억하기 쉽다.
-- 80: Port: 이 부분은 선택적이다. 하나의 서버는 많은 ports를 가지고 있다. port를 명시하지 않으면 기본값인 80이 들어간다. 0~1023은 잘 알려진 서비스들을 위해 예약되어 있으므로 이 범위의 port는 사용하지 말자!
+- 80: Port: 이 부분은 선택적이다. 하나의 서버는 많은 ports를 가지고 있다. port를 명시하지 않으면 기본값인 80이 들어간다. 0~1023은 잘 알려진 서비스들을 위해 예약되어 있으므로 이 범위의 port는 사용하지 말자!ㄴ
 - beeradvice/select: Path: 서버 상에서 요청되는 자원의 위치에 대한 경로
 - beer1.html: 요청되는 content의 이름. HTML page, sevlet, image, PDF, music, video 등이 들어갈 수 있다. 이 optional 부분이 없다면 기본값으로 index.html을 넘겨준다.
 
-### 아파치로 구성한 웹사이트 디렉토리 구조
+### 웹 서버는 정적인 웹 페이지를 serve한다.
+정적인 페이지는 diretory안에 있는다. 서버는 정적인 페이지를 찾아서 client에게 그대로 제공한다. 
+
+### 하지만 웹 서버 그 이상을 원하는 순간이 있다.
+web server application은 페이지를 serve한다. 
+하지만 서버상의 다른 application은 동적으로 변하는 값을 제공할 수 있다.
+
+### 웹 서버 혼자서 할 수 없는 두 가지
+#### 1. Dynamic content
+web server applicaion은 동적인 페이지만 제공하지만, 분리된 helper application은 동적인 just-in-time page를 만들 수 있다.
+
+#### 2. Saving data on the server
+user가 뎅터를 제공한다면 웹 서버는 helper application에게 도움을 요청하면 웹 서버는 파라미터를 helper app에게 넘겨주고 client에게 response를 생성하라고 한다.
+
+### web server helper app을 CGI program이라고 한다.
+1. 사용자는 정적인 페이지가 아닌 CGI proram URL을 클릭한다.
+2. 웹 서버는 request가 helper app을 위한 것임을 보고 웹 서버는 helper app 실행
+3. helper app은 새로운 페이지를 구성하고 HTML을 서버로 다시 보낸다. 서버가 helper app으로부터 받은 HTML은 정적인 페이지이다.
+4. helper application이 종료되고, client은 HTML 페이지를 돌려받게 된다.
