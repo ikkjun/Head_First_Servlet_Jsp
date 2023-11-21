@@ -78,3 +78,32 @@ color=dark&tast=malty: message body(payload)
 파라미터가 밑에 있기 때문에 길이의 제한이 없다. (GET은 파라미터를 Request line에 두어야 하므로 길이 제한이 있다.)
 
 ### HTTP응답 해부하기, 그리고 MIME type란 무엇인가?
+지금까지 배운 것: 브라우저에서 서버로 보내는 요청(request)
+지금부터 배울 것: 서버에서 응답(response)을 보내는 것
+HTTP response에는 header와 body가 있다.
+header 정보는 사용한 프로토콜에 대한 정보, 요청이 성공적이었는지, 그리고 body안에 어떤 종류의 정보가 들어있는지 알려준다.
+body는 브라우저가 화면에 보여줄 HTML과 같은 내용을 포함하고 있다.
+
+### 한 페이지로 다 보기
+1. 사용자가 URL을 입력
+2. 브라우저가 HTTP GET request를 만든다.
+3. HTTP GET이 서버로 보내진다.
+4. 서버는 요청한 페이지를 찾는다.
+5. HTTP response를 보낸다.
+6. HTTP response는 브라우저로 보내진다.
+7. 브라우저는 HTML을 보여준다.
+8. 클라이언트는 화면을 본다.
+
+### URL을 Earl로 발음하지 말라!
+URL: Uniform Resource Locators
+웹 상에서 모든 자원들은 고유한 주소를 URL형태로 가지고 있다.
+
+http://www.wickedlysmart.com:80/beeradvice/select/beer1.html
+
+- http://: Protocol: 서버에게 어떤 communications protocal이 사용될지 알려준다.(여기서는 http)
+- www.wickedlysmart.com: server: 질제 서버의 유일한 이름. 이 이름은 유일한 IP address와 대응된다. IP주소는 숫자로 구성되며 "xxx.yyy.zzz.aaa"의 형태를 갖는다. 그러나 서버 이름이 더 기억하기 쉽다.
+- 80: Port: 이 부분은 선택적이다. 하나의 서버는 많은 ports를 가지고 있다. port를 명시하지 않으면 기본값인 80이 들어간다. 0~1023은 잘 알려진 서비스들을 위해 예약되어 있으므로 이 범위의 port는 사용하지 말자!
+- beeradvice/select: Path: 서버 상에서 요청되는 자원의 위치에 대한 경로
+- beer1.html: 요청되는 content의 이름. HTML page, sevlet, image, PDF, music, video 등이 들어갈 수 있다. 이 optional 부분이 없다면 기본값으로 index.html을 넘겨준다.
+
+### 아파치로 구성한 웹사이트 디렉토리 구조
