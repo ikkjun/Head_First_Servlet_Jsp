@@ -94,7 +94,7 @@ body는 브라우저가 화면에 보여줄 HTML과 같은 내용을 포함하�
 7. 브라우저는 HTML을 보여준다.
 8. 클라이언트는 화면을 본다.
 
-### URL을 Earl로 발음하지 말라!
+### <span style="color:red">URL</span>
 URL: Uniform Resource Locators
 웹 상에서 모든 자원들은 고유한 주소를 URL형태로 가지고 있다.
 
@@ -125,3 +125,14 @@ user가 뎅터를 제공한다면 웹 서버는 helper application에게 도움�
 2. 웹 서버는 request가 helper app을 위한 것임을 보고 웹 서버는 helper app 실행
 3. helper app은 새로운 페이지를 구성하고 HTML을 서버로 다시 보낸다. 서버가 helper app으로부터 받은 HTML은 정적인 페이지이다.
 4. helper application이 종료되고, client은 HTML 페이지를 돌려받게 된다.
+
+## 핵심 정리
+* HTTP는 하이퍼텍스트 전송 프로토콜(HyperText Transfer Protocol)의 약자이다. HTTP는 웹에서 사용하는 네트워크 프로토콜이며 TCP/IP 위에서 돌아간다.
+* HTTP는 request / response 모델을 사용한다. 즉 client는 HTTP request를 만들고 web server는 HTTP response를 돌려보낸다. 
+* 서버로부터 온 response가 HTML page라면 HTML page는 HTTP response에 첨부된다.
+* HTTP request는 request URL, HTTP method, form parameter data가 있다.
+* HTTP response는 status code, content-type(MIME), response의 실제 content가 들어있다.
+* GET request는 form data를 URL의 끝에 추가한다.
+* POST request는 form data를 request의 body에 포함시킨다.
+* MIME type은 browser에게 어떤 종류의 데이터를 browser가 받을 것인지 알려준다.
+* 
