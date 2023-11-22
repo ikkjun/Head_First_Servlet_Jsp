@@ -96,6 +96,7 @@ body는 브라우저가 화면에 보여줄 HTML과 같은 내용을 포함하�
 
 ### URL
 <span style="color:red;">URL</span>
+<span style="color:blue">URL</span>.
 URL: Uniform Resource Locators
 웹 상에서 모든 자원들은 고유한 주소를 URL형태로 가지고 있다.
 
