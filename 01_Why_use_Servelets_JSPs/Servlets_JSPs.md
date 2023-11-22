@@ -94,7 +94,7 @@ body는 브라우저가 화면에 보여줄 HTML과 같은 내용을 포함하�
 7. 브라우저는 HTML을 보여준다.
 8. 클라이언트는 화면을 본다.
 
-### <span style="color:red">URL</span>
+### <span style="color:red;">URL</span>
 URL: Uniform Resource Locators
 웹 상에서 모든 자원들은 고유한 주소를 URL형태로 가지고 있다.
 
