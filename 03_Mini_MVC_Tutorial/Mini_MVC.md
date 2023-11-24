@@ -12,3 +12,8 @@
   * servlet-name
   * welcome-file
 
+## 실제 웹 애플리케이션 빌드 순서
+1. 사용자 화면(브라우저가 화면에 어떤 내용을 보여줄 것인가)을 검토하고 이는 고차원적인 구조화 작업이다.
+2. 이번 프로젝트에서 사용할 개발 환경(development environment) 만들기
+3. 배포 환경(deployment environment) 만들기
+4. 다양한 component에 대해 반복적인 개발과 테스트 하기
