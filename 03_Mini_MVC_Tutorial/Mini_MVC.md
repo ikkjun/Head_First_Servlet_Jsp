@@ -43,3 +43,9 @@
   3. model class를 위한 test class를 만든 뒤, model class를 build하고 test하기
   4. servlet을 version 2로 업그레이드 하기. version 2에서는 model class를 호출할 수 있는 능력을 추가하기
   5. JSP를 만들고 servlet을 version3로 업그레이드 한다.
+
+## servlet
+### servlet mapping
+논리적인 이름을 servlet class file에 mapping하기
+1. subimit버튼을 클릭하면 브라우저는 request URL인 /Beer-v1/SelectBeer.do를 생성한다.
+2. container는 DD를 검색해서 SelectBeer.do와 일치하는 <servlet-mapping>을 가진 <url-pattern>을 찾는다. 여기서 슬래시(/)는 web app의 context root를 나타내며, SelectBeer.do는 자원의 논리적 이름이다.
