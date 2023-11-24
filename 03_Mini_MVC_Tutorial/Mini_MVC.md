@@ -19,6 +19,18 @@
   3. form.html을 브라우저로 넘겨준다. 화면을 보고 사용자가 자산의 취향을 입력한다.
   4. 사용자가 선택한 정보를 컨테이너로 보낸다.
   5. 컨테이너는 URL을 분석하여 담당 서블릿을 찾아 요청을 넘긴다.
+  6. servlet은 클래스를 찾아 request를 넘긴다.
+  7. servlet이 클래스가 넘겨준 정답을 request 객체에 넣는다.
+  8. JSP에 이 request를 JSP에 forward한다.
+  9. JSP는 request 객체로부터 정답을 얻는다. 
+  10. JSP는 container를 위해 HTML 페이지를 작성한다.
+  11. container는 이 페이지를 user에게 넘겨준다.
 2. 이번 프로젝트에서 사용할 개발 환경(development environment) 만들기
+  * web app을 배포할 때는 개발환경 디렉토리의 일부를 Container가 지정하는 곳에 복사한다.  
+  1. etc 폴더: 환경 설정 파일(DD)
+  2. lib: 3rd party JAR files
+  3. src: Java 코드는 src 디렉토리 내에 있다.
+  4. src/com/example/web, model/: model component로부터 controller component를 분리했다.
+  5. web: 정적이고 동적인 component가 들어간다.
 3. 배포 환경(deployment environment) 만들기
 4. 다양한 component에 대해 반복적인 개발과 테스트 하기
