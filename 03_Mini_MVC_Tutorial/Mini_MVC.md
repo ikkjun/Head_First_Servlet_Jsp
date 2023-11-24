@@ -33,4 +33,8 @@
   4. src/com/example/web, model/: model component로부터 controller component를 분리했다.
   5. web: 정적이고 동적인 component가 들어간다.
 3. 배포 환경(deployment environment) 만들기
+  1. Beer-v1: web app의 이름. 톰캣이 URL을 분석할 때 사용하는 context root라고 한다.
+  2. Beer-v1/WEB-INF: web.xml 파일은 반드시 WEB-INF 디렉토리 아래에 있어야 한다.
+  3. Beer-v1/WEB-INF/classes/com: development environment에서 사용한 package structure와 완전히 동일
 4. 다양한 component에 대해 반복적인 개발과 테스트 하기
+  1. 
