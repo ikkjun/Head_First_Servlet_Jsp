@@ -37,5 +37,8 @@
   2. Beer-v1/WEB-INF: web.xml 파일은 반드시 WEB-INF 디렉토리 아래에 있어야 한다.
   3. Beer-v1/WEB-INF/classes/com: development environment에서 사용한 package structure와 완전히 동일
 4. 다양한 component에 대해 반복적인 개발과 테스트 하기
-  1. user가 제일 먼저 request하는 ㅗc가 제일 먼저 볼 HTML 폼을 생성하여 테스트하기.
-  2. 
+  1. user가 제일 먼저 request하는 HTML form을 build하고 test 하기
+  2. HTML form으로 controller servlet의 version1을 build하고 test하기. version1은 HTML form에 의해 호출되면 servlet이 받는 파라미터 값을 출력한다.
+  3. model class를 위한 test class를 만든 뒤, model class를 build하고 test하기
+  4. servlet을 version 2로 업그레이드 하기. version 2에서는 model class를 호출할 수 있는 능력을 추가하기
+  5. JSP를 만들고 servlet을 version3로 업그레이드 한다.
