@@ -49,3 +49,6 @@
 논리적인 이름을 servlet class file에 mapping하기
 1. subimit버튼을 클릭하면 브라우저는 request URL인 /Beer-v1/SelectBeer.do를 생성한다.
 2. container는 DD를 검색해서 SelectBeer.do와 일치하는 <servlet-mapping>을 가진 <url-pattern>을 찾는다. 여기서 슬래시(/)는 web app의 context root를 나타내며, SelectBeer.do는 자원의 논리적 이름이다.
+3. 컨테이너는 <url-pattern>에 대한 <servlet-name>이 "Ch3 Beer"임을 확인한다. 그러나 "Ch3 Beer"은 이것은 실제 servlet class file의 이름이 아니며 DD내에서만 사용하는 servlet 이름이다. 
+컨테이너에게는 servlet은 DD(Deployment Descriptor)에서 <servlet> 태그에 있는 이름이다. 서블릿의 이름은 DD의 다른 부분에서 해당 servlet을 mapping하기 위해 DD내에서만 사용된다. 
+4. 컨테이너는 <servlet-name> Ch3 Beer
