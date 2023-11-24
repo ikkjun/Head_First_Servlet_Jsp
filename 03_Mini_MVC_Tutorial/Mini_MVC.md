@@ -36,6 +36,7 @@
   1. Beer-v1: web app의 이름. 톰캣이 URL을 분석할 때 사용하는 context root라고 한다.
   2. Beer-v1/WEB-INF: web.xml 파일은 반드시 WEB-INF 디렉토리 아래에 있어야 한다.
   3. Beer-v1/WEB-INF/classes/com: development environment에서 사용한 package structure와 완전히 동일
+  * DD 작업 중 핵심은 client가 request를 위해 사용하는 논리적 이름(SelectBeer.do)와 실제 servlet class file(com.example.web.BeerSelect)를 mapping하는 것이다.
 4. 다양한 component에 대해 반복적인 개발과 테스트 하기
   1. user가 제일 먼저 request하는 HTML form을 build하고 test 하기
   2. HTML form으로 controller servlet의 version1을 build하고 test하기. version1은 HTML form에 의해 호출되면 servlet이 받는 파라미터 값을 출력한다.
