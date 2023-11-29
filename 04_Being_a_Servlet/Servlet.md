@@ -54,11 +54,3 @@ MyServlet 클래스
 |service()|최초 클라이언트의 요청을 받았을 때, 컨테이너는 새로운 스레드를 생성하거나 스레드 풀로부터 하나를 가지고 와서 servlet의 service() 메소드를 호출한다.|클라이언트의 HTTP 메소드를 참조하여 doGet()을 호출할지 doPost()를 호출할지 아니면 다른 메소드를 호출할지 판단한다.|override 할 필요는 없다. doPost()나 doGet()을 override하여 HttpServlet의 service()가 이를 실행하도록 하면 된다.|
 |doGet() 또는 doPost()|service() 메소드가 클라이언트의 HTTP 메소드(GET, POST 등)를 참조하여 doGet() 또는 doPost()를 호출한다.|코드가 시작하는 부분이다. web app이 작업을 시작하는 곳이다. 다른 객체에서 다른 메서드를 호출할 수 있지만, 여기에서 시작한다.|doGet()이나 doPost() 중 반드시 하나 이상이 있어야 한다. override할 것 중에 어떤 것이든 컨테이너에게 말해야 한다. doPost()를 override하지 않을 것이라면 이 servlet은 HTTP POST request를 지원하지 않는 것이라고 말하는 중이다.|
 
-What it's for
-This is where your code begins! This is the method that's responsible for whatever the heck your web app is sup­ posed to be DOING.
-You can call other methods on other objects, of course, but it all starts from here.
-
-Do you override it?
-ALWAYS at least ONE of them! (aoGetOor aoPost())
-Whichever one(s) you override tells the Container what you support. If you
-don't override doPost(), for example, then you're telling the Container that this servlet does not support HTTP PO~T reciuests.
