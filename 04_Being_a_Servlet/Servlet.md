@@ -55,7 +55,7 @@ MyServlet 클래스
 |doGet() 또는 doPost()|service() 메소드가 클라이언트의 HTTP 메소드(GET, POST 등)를 참조하여 doGet() 또는 doPost()를 호출한다.|코드가 시작하는 부분이다. web app이 작업을 시작하는 곳이다. 다른 객체에서 다른 메서드를 호출할 수 있지만, 여기에서 시작한다.|doGet()이나 doPost() 중 반드시 하나 이상이 있어야 한다. override할 것 중에 어떤 것이든 컨테이너에게 말해야 한다. doPost()를 override하지 않을 것이라면 이 servlet은 HTTP POST request를 지원하지 않는 것이라고 말하는 중이다.|
 
 ### servlet threads
-* 서블릿 초기화
+* servlet initialization
    * Thread A
       * Container는 servlet이 어떤 client request를 수행하기 전에 servlet instance를 생성한 다음 servlet instance 위에 init() 메소드를 호출한다. 
       * 초기화 코드가 있다면 servlet class에서 init() 메서드를 override해야 한다. 그렇지 않으면 GenericServlet의 init() 메서드가 실행된다.
@@ -66,3 +66,5 @@ MyServlet 클래스
       * 두 번째 client request가 들어올 때, Container는 thread를 생성하거나 다른 thread를 찾아서 servlet의 service() 메서드를 호출한다.
       * client request가 있을 때마다 service() &#8594; doGet() 메서드 순서로 호출된다. 
 * Container는 하나의 servlet에 대한 다수의 request를 처리하기 위해 다수의 thread를 실행하지 다수의 인스턴스를 만들지 않는다.
+   * servlet initialization
+      
