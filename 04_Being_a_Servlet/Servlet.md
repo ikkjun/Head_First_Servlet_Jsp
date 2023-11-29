@@ -67,4 +67,8 @@ MyServlet 클래스
       * client request가 있을 때마다 service() &#8594; doGet() 메서드 순서로 호출된다. 
 * Container는 하나의 servlet에 대한 다수의 request를 처리하기 위해 다수의 thread를 실행하지 다수의 인스턴스를 만들지 않는다.
    * servlet initialization
-      
+      - servlet의 일생은 Container가 servlet class 파일을 찾을 때 시작한다. 
+      - Container가 시작하면, Container는 배포된 web app을 찾고 servlet class 파일을 찾는다. 
+         (1) class 찾기
+         (2) class 로딩하기. 이는 Container가 시작하거나 client가 처음 이용할 때 일어난다. 
+      - Container가 client가 처음 필요로 할 때, servlet을 일찍 준비하든가 실행 시에 로딩하든 상관없이 servlet이 완전히 초기화 되기 전까지 servlet의 service() 메서드를 실행되지 않을 것이다. 
