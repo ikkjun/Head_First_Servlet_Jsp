@@ -50,7 +50,15 @@ MyServlet 클래스
 ### servlet에게 3번의 중요한 순간들
 ||호출되는 시점|목적|override 여부|
 |---|---|---|---|
-|init()|컨테이너는 servlet 인스턴스를 생성한 다음 init() 메소드를 호출한다. 이 메소드는 service 메소드 전에 실행되어야 한다.|클라이언트의 요청을 처리하기 전에 서블릿을 초기화 할 기회를 주는 것이다.|override 가능. 초기화 할 코드가 있으면 init() 메서드를 override 해야 한다.|
+|init()|컨테이너는 servlet 인스턴스를 생성한 다음 init() 메소드를 호출한다. 이 메소드는 service 메소드 전에 실행되어야 한다.|클라이언트의 요청을 처리하기 전에 서블릿을 초기화 할 기회를 주는 것이다.|override 가능. 초기화 할 코드가 있으면 init() 메서드를 override 해야 한다. override하지 않으면 GenericServlet()의 init()이 실행된다.|
 |service()|최초 클라이언트의 요청을 받았을 때, 컨테이너는 새로운 스레드를 생성하거나 스레드 풀로부터 하나를 가지고 와서 servlet의 service() 메소드를 호출한다.|클라이언트의 HTTP 메소드를 참조하여 doGet()을 호출할지 doPost()를 호출할지 아니면 다른 메소드를 호출할지 판단한다.|override 할 필요는 없다. doPost()나 doGet()을 override하여 HttpServlet의 service()가 이를 실행하도록 하면 된다.|
 |doGet() 또는 doPost()|service() 메소드가 클라이언트의 HTTP 메소드(GET, POST 등)를 참조하여 doGet() 또는 doPost()를 호출한다.|코드가 시작하는 부분이다. web app이 작업을 시작하는 곳이다. 다른 객체에서 다른 메서드를 호출할 수 있지만, 여기에서 시작한다.|doGet()이나 doPost() 중 반드시 하나 이상이 있어야 한다. override할 것 중에 어떤 것이든 컨테이너에게 말해야 한다. doPost()를 override하지 않을 것이라면 이 servlet은 HTTP POST request를 지원하지 않는 것이라고 말하는 중이다.|
 
+### servlet threads
+* 서블릿 초기화
+   * Thread A
+      * Container는 servlet이 어떤 client request를 수행하기 전에 servlet instance를 생성한 다음 servlet instance 위에 init() 메소드를 호출한다. 
+      * 초기화 코드가 있다면 servlet class에서 init() 메서드를 override해야 한다. 그렇지 않으면 GenericServlet의 init() 메서드가 실행된다.
+   * Thread B
+      * 첫 번째 client request이 들어올 때 Container는 thread를 실행하고 servlet의 service() 메서드를 호출한다.
+      * service() 메소
