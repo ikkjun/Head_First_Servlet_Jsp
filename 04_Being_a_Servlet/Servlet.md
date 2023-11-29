@@ -30,10 +30,19 @@
 ### 서블릿 API
 #### servlet은 생명주기 메소드를 상속받는다.  
 Servlet interface
-service(ServletRequest, ServletResponse)
-init(ServletConfig)
-destory()
-<hr>
-getServletConfig()
-getServletInfo()
+service(ServletRequest, ServletResponse)  
+init(ServletConfig)  
+destory()  
+&#8658; 생명주기와 관련된 메소드  
+<hr>  
+getServletConfig()  
+getServletInfo()  
 &#8593;  
+GenericServlet 클래스
+추상 클래스이다. 대부분 서블릿의 서블랫 행위라고 하는 것들이 이 클래스로부터 나왔다.  
+&#8658;  
+HttpServlet 클래스
+추상 클래스이다. service() 메소드는 HTTP Request와 Response만 받아들이고 다른 어떤 서블릿 Request의 Responseㄴ느 받지 않는다는 의미이다.  
+<hr>
+MyServlet 클래스  
+작성할 서블릿의 대부분 행위는 상위 클래스의 메소드를 상속받음으로써 해결된다. 그러므로 HTTP 메소드를 재정의 하는 일만 하면 된다.
