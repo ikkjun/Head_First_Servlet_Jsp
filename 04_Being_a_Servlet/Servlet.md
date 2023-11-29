@@ -65,3 +65,4 @@ MyServlet 클래스
    * Thread C(client request 2)
       * 두 번째 client request가 들어올 때, Container는 thread를 생성하거나 다른 thread를 찾아서 servlet의 service() 메서드를 호출한다.
       * client request가 있을 때마다 service() &#8594; doGet() 메서드 순서로 호출된다. 
+* Container는 하나의 servlet에 대한 다수의 request를 처리하기 위해 다수의 thread를 실행하지 다수의 인스턴스를 만들지 않는다.
