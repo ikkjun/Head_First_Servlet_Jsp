@@ -59,6 +59,9 @@ MyServlet 클래스
    * Thread A
       * Container는 servlet이 어떤 client request를 수행하기 전에 servlet instance를 생성한 다음 servlet instance 위에 init() 메소드를 호출한다. 
       * 초기화 코드가 있다면 servlet class에서 init() 메서드를 override해야 한다. 그렇지 않으면 GenericServlet의 init() 메서드가 실행된다.
-   * Thread B
-      * 첫 번째 client request이 들어올 때 Container는 thread를 실행하고 servlet의 service() 메서드를 호출한다.
-      * service() 메소
+   * Thread B(client reqeust 1)
+      * 첫 번째 client request이 들어올 때, Container는 thread를 실행하고 servlet의 service() 메서드를 호출한다.
+      * service() 메소드가 완료되는 시점이 스레드가 종료되는 시점이다.
+   * Thread C(client request 2)
+      * 두 번째 client request가 들어올 때, Container는 thread를 생성하거나 다른 thread를 찾아서 servlet의 service() 메서드를 호출한다.
+      * client request가 있을 때마다 service() &#8594; doGet() 메서드 순서로 호출된다. 
