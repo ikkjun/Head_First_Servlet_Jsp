@@ -137,7 +137,7 @@ servlet은 client request를 다루기 위해 존재한다.
 |**ServletRequest interface (javax.servlet.ServletRequest)**|**ServletResponse interface (javax.servlet.ServletResponse)**|
 |-----------------------------------------------------------|------------------------------------------------------------|
 |getAttribute(String) <br> getContentLength() <br> getIntputStrean() <br> getLocalPort() <br> getParameter() <br> getParameterNames()|getBufferSize() <br> setContentType() <br> getOutputStream() <br> geWriter() <br> setContentType()|
-|[center]&uarr;|[center]&uarr;|
+|<center>&uarr;</center>|<center>&uarr;</center>|
 |**Http ServletRequest interface (javax.servlet.http.HttpServletRequest)**|**HttpServletResponse interface (javax.servlet.http.HttpServletResponse)**|
-|:---:|:---:|
+|:-----------------------------------------------------------------------:|:------------------------------------------------------------------------:|
 |getContextPath() <br> getCookies() <br> getHeader(String) <br> getQueryString() <br> getSession() <br> getMethod()|addCookie() <br> addHeader() <br> encodeRedirectURL() <br> sendError <br> setStatus()|
