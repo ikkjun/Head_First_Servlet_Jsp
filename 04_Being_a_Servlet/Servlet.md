@@ -164,4 +164,4 @@ HttpServlet과 관련되지 않은 CONNECT를 제외하고 HttpServlet 클래스
 3. bookmarking
    * GET request는 그대로 즐겨찾기에 추가되지만, POST request는 그렇지 않다. user가 검색 조건을 명시하고 검색했을 때, server에 새로운 데이터가 있기 때문에 일주일 뒤에 돌아와도 이전의 데이터를 보여준다.
 4. supposed to be used(사용 목적)
-   * 
+   * df
