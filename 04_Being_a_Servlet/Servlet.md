@@ -144,3 +144,18 @@ servlet은 client request를 다루기 위해 존재한다.
 
 ### HttpServletRequest와 HttpServletResponse는 인터페이스인데 누가 이를 구현할까? API에 구현된 클래스가 있나?
 컨테이너가 구현하고 API에 구현된 클래스는 없다. API에 없는데 그 이뉴는 컨테이너 벤더가 구현하기 때문이다.
+
+## HTTP 메소드의 종류
+* GET: 요청된 URL로부터 자원이나 파일을 get한다고 요청한다.
+* POST: server에게 request에 첨부된 body info를 받아들이라고 요구하고, 요청된 URL에 body info를 넘겨준다.
+* HEAD: GET이 무엇을 반환하든지 오직 header 부분만 요청한다. 그래서 HEAD는 response에 body가 없는 GET과 같다.
+* TRACE: request message에 loopback을 요청해서, 테스트 또는 troubleshooting(문제 해결)을 위해 client가 다른 쪽에서 무엇을 받았는지 볼 수 있다.
+* OPTION: 요청한 URL이 응답할 수 있는 HTTP 메소드의 목록을 요청한다.
+* PUT: 요청한 URL에서 동봉한 body info를 put한다.
+* DELETE: 요청한 URL에서 자원이나 파일을 delete한다.
+* CONNECT: 터널링의 목적으로 connect를 요청한다.
+HttpServlet과 관련되지 않은 CONNECT를 제외하고 HttpServlet 클래스의 doXXX() 메소드와 연결된다.
+
+### GET과 POST의 차이점
+1. POST에는 body가 있다. GET은 Request line에 보낼 수 있는 파라미터 데이터의 양이 제한되어 있다.
+2. GET을 사용하면 브라우저의 input bar(주소 입력 창)에 파라미터 데이터가 노출되면서 보안에 취약하다는 단점이 있다.
