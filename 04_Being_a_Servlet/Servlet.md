@@ -263,3 +263,26 @@ for(int x=0;x<sizes.length; x++) {
    out.println("<br>sizes: " + sizes[x])
 }
 ```
+
+## HttpServletRequest 객체
+### request 객체로부터 얻을 수 있는 것
+1. 클라이언트 플랫폼 정보 및 브라우저 정보
+   ```java
+   String client = request.getHeader("User-Agent");
+   ```
+2. request에 관련된 쿠키
+   ```java
+   Cookie[] cookies = request.getCookies();
+   ```
+3. 클라이언트의 세션 정보
+   ```java
+   HttpSession session = request.getSession();
+   ```
+4. request의 HTTP 메소드
+   ```java
+   String theMethod = request.getMethod();
+   ```
+5. request의 입력 스트림
+   ```java
+   InputStream input = request.getInputStream();
+   ```
