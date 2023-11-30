@@ -135,4 +135,5 @@ servlet은 client request를 다루기 위해 존재한다.
 
 ## Request와 Response
 |**ServletRequest interface (javax.servlet.ServletRequest)**|**ServletResponse interface(javax.servlet.ServletResponse)**|
+|-----------------------------------------------------------|------------------------------------------------------------|
 |getAttribute(String) <br> getContentLength()|getBufferSize() <br> setContentType()|
