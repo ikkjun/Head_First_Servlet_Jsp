@@ -24,11 +24,11 @@
 6. service() 메소드가 끝나면, 스레드를 소멸하거나 컨테이너가 관리하는 스레드 풀로 돌려 보낸다. 그 다음 request와 response 객체는 가비지 컬렉션이 될 준비를 하며, 이 객체에 대한 참조는 범위를 벗어나기 때문에 사라진다.  
 마지막으로 클라이언트는 서버로부터 응답을 받게 된다.
 
-## servlet의 lifecycle
+## **servlet의 lifecycle**
 servlet의 lifecycle은 단순하다. servlet은 초기화라는 오직 하나의 중요한 상태를 가진다.<br>
 서블릿이 초기화되지 않았다는 말은 초기화 되는 중(생성자를 실행하거나 init() 메소드를 실행하거나)이거나, 소멸되는 중(destory() 메소드를 실행)이거나 존재하지 않은 것 중 하나이다.
 1. Load class
-2. Instantiate servlet(생서자 실행)
+2. Instantiate servlet(생성자 실행)
 3. init(): servlet의 life에서 오직 한 번만 호출되고 Container가 service()를 호출하기 전에 완료되어야 한다.
 4. service(): servlet이 가장 많은 시간을 보내는 곳이다. doGet(), doPost()와 같은 client의 request를 다룬다. 각각의 request는 독립된 thread에서 수행된다.
 5. destroy(): Container가 servlet에게 servlet을 종료하기 전 정리할 기회를 마지막으로 단 한 번 준다.
@@ -56,9 +56,11 @@ log(String)<br>
 log(String, Throwable)<br>
 추상 클래스이다. 필요한 대부분의 서블릿 메소드를 구현햇다.<br>
 대부분 서블릿의 서블랫 행위라고 하는 것들이 이 클래스로부터 나왔다.<br>
+servlet 클래스는 javax.servlet 또는 javax.servlet.http 둘 중 하나의 패키지에 속한다.<br/>
+GenericServlet 클래스는 servlet 인터페이스를 구현한다.<br/>
 <hr>
 
-HttpServlet 클래스  
+HttpServlet 클래스(javax.servlet.http.HttpServlet) 
 **service(HttpServletRequest, HttpServletResponse)**<br>
 service(ServletRequest, ServletResponse)<br>
 doGet(HttpServletRequest, HttpServletResponse)<br>
@@ -69,7 +71,8 @@ doTrace(HttpServletRequest, HttpServletResponse)<br>
 doDelete(HttpServletRequest, HttpServletResponse)<br>
 getLastModified(HttpServletRequest, HttpServletResponse)<br>
 (추상 클래스) HttpServlet는 servlet의 HTTP적인 측면을 반영하기 위해 service()를 재정의한다.<br>
-이는 service() 메소드가 오래된 servlet의 request와 response를 받지 않고, HTTP request와 response만 받는다는 의미이다.
+이는 service() 메소드가 오래된 servlet의 request와 response를 받지 않고, HTTP request와 response만 받는다는 의미이다. <br/>
+대부분 기본적인 servlet 메소드가 이미 구현된 추상 클래스인 javax.servlet.GenericServlet을 상속 받는다.
 <hr>
 MyServlet 클래스  
 작성할 서블릿의 대부분 행위는 상위 클래스의 메소드를 상속받음으로써 해결된다. 그러므로 HTTP 메소드를 재정의 하는 일만 하면 된다.
@@ -286,3 +289,4 @@ for(int x=0;x<sizes.length; x++) {
    ```java
    InputStream input = request.getInputStream();
    ```
+
