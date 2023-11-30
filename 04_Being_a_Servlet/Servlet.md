@@ -139,5 +139,8 @@ servlet은 client request를 다루기 위해 존재한다.
 |getAttribute(String) <br> getContentLength() <br> getIntputStrean() <br> getLocalPort() <br> getParameter() <br> getParameterNames()|getBufferSize() <br> setContentType() <br> getOutputStream() <br> geWriter() <br> setContentType()|
 |<center>&uarr;</center>|<center>&uarr;</center>|
 |**Http ServletRequest interface (javax.servlet.http.HttpServletRequest)**|**HttpServletResponse interface (javax.servlet.http.HttpServletResponse)**|
-|:-----------------------------------------------------------------------:|:------------------------------------------------------------------------:|
 |getContextPath() <br> getCookies() <br> getHeader(String) <br> getQueryString() <br> getSession() <br> getMethod()|addCookie() <br> addHeader() <br> encodeRedirectURL() <br> sendError <br> setStatus()|
+|HttpServletRequest 메소드는 cookies, header, session과 같은 HTTP에 관련된 것들을 서비스한다.|HttpServletResponse는 HTTP를 사용할 때 신경써야 하는 error, cookie, header에 대한 메소드들이 추가되어 있다.|
+
+### HttpServletRequest와 HttpServletResponse는 인터페이스인데 누가 이를 구현할까? API에 구현된 클래스가 있나?
+컨테이너가 구현하고 API에 구현된 클래스는 없다. API에 없는데 그 이뉴는 컨테이너 벤더가 구현하기 때문이다.
