@@ -35,7 +35,8 @@ Servlet interface(javax.servlet.Servlet)<br>
 **destory()** &#8594; 생명주기 메소드<br>
 getServletConfig()<br>
 getServletInfo()<br>
-<hr>  
+<hr>
+
 GenericServlet 클래스(javax.servlet.GenericServlet)<br> 
 **service(ServletRequest, ServletResponse)**<br>
 **init(ServletConfig)**<br>
@@ -51,6 +52,7 @@ log(String, Throwable)<br>
 추상 클래스이다. 필요한 대부분의 서블릿 메소드를 구현햇다.<br>
 대부분 서블릿의 서블랫 행위라고 하는 것들이 이 클래스로부터 나왔다.<br>
 <hr>
+
 HttpServlet 클래스  
 **service(HttpServletRequest, HttpServletResponse)**<br>
 service(ServletRequest, ServletResponse)<br>
