@@ -24,11 +24,16 @@
 6. service() 메소드가 끝나면, 스레드를 소멸하거나 컨테이너가 관리하는 스레드 풀로 돌려 보낸다. 그 다음 request와 response 객체는 가비지 컬렉션이 될 준비를 하며, 이 객체에 대한 참조는 범위를 벗어나기 때문에 사라진다.  
 마지막으로 클라이언트는 서버로부터 응답을 받게 된다.
 
-## 서블릿의 일생
-서블릿은 오직 하나의 중요한 상태를 가지는데 이는 초기화이다.  
+## servlet의 lifecycle
+servlet의 lifecycle은 단순하다. servlet은 초기화라는 오직 하나의 중요한 상태를 가진다.<br>
 서블릿이 초기화되지 않았다는 말은 초기화 되는 중(생성자를 실행하거나 init() 메소드를 실행하거나)이거나, 소멸되는 중(destory() 메소드를 실행)이거나 존재하지 않은 것 중 하나이다.
+1. Load class
+2. Instantiate servlet(생서자 실행)
+3. init(): servlet의 life에서 오직 한 번만 호출되고 Container가 service()를 호출하기 전에 완료되어야 한다.
+4. service(): servlet이 가장 많은 시간을 보내는 곳이다. doGet(), doPost()와 같은 client의 request를 다룬다. 각각의 request는 독립된 thread에서 수행된다.
+5. destroy(): Container가 servlet에게 servlet을 종료하기 전 정리할 기회를 마지막으로 단 한 번 준다.
 
-## 서블릿 API
+### 서블릿 API
 Servlet interface(javax.servlet.Servlet)<br>
 **service(ServletRequest, ServletResponse)**<br>
 **init(ServletConfig)**<br>
@@ -69,7 +74,7 @@ getLastModified(HttpServletRequest, HttpServletResponse)<br>
 MyServlet 클래스  
 작성할 서블릿의 대부분 행위는 상위 클래스의 메소드를 상속받음으로써 해결된다. 그러므로 HTTP 메소드를 재정의 하는 일만 하면 된다.
 
-## servlet에게 3번의 중요한 순간들
+### 3번의 중요한 순간
 ||호출되는 시점|목적|override 여부|
 |---|---|---|---|
 |init()|컨테이너는 servlet 인스턴스를 생성한 다음 init() 메소드를 호출한다. 이 메소드는 service 메소드 전에 실행되어야 한다.|클라이언트의 요청을 처리하기 전에 서블릿을 초기화 할 기회를 주는 것이다.|override 가능. 초기화 할 코드가 있으면 init() 메서드를 override 해야 한다. override하지 않으면 GenericServlet()의 init()이 실행된다.|
@@ -119,5 +124,11 @@ servlet이 되려면 객체는 servletness를 받아야 한다.
    * 다른 부분의 application이 접근할 수 있는 application 게시판처럼 사용한다. 
    * server 정보를 얻기 위해 사용한다. 
 3. ServletConfig과 ServletContext의 차이점
-   * 이름
-      * 
+   * ServletConfig
+      - config는 설정(configuration)이라는 의미이다. servlet을 배포할 때 설정한 값이다. 
+      - ServletConfig의 파라미터는 servlet이 배포되고 실행되는 동안 바뀌지 않는다. 바꾸려면 servlet을 다시 배포해야 한다.
+   * ServletContext
+      - servlet 당 하나가 아니라, web app 당 하나의 ServletContext만 존재한다. 
+
+## servlet의 임무
+servlet은 client request를 다루기 위해 존재한다.
