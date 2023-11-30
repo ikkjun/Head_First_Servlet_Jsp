@@ -29,13 +29,12 @@
 서블릿이 초기화되지 않았다는 말은 초기화 되는 중(생성자를 실행하거나 init() 메소드를 실행하거나)이거나, 소멸되는 중(destory() 메소드를 실행)이거나 존재하지 않은 것 중 하나이다.
 
 ## 서블릿 API
-### servlet은 생명주기 메소드를 상속받는다.  
-Servlet interface(javax.servlet.Servlet)
-**service(ServletRequest, ServletResponse)**
-**init(ServletConfig)**
-**destory()** &#8594; 생명주기 메소드
-getServletConfig()
-getServletInfo()
+Servlet interface(javax.servlet.Servlet)<br>
+**service(ServletRequest, ServletResponse)**<br>
+**init(ServletConfig)**<br>
+**destory()** &#8594; 생명주기 메소드<br>
+getServletConfig()<br>
+getServletInfo()<br>
 <hr>  
 GenericServlet 클래스(javax.servlet.GenericServlet)<br> 
 **service(ServletRequest, ServletResponse)**<br>
@@ -53,15 +52,15 @@ log(String, Throwable)<br>
 대부분 서블릿의 서블랫 행위라고 하는 것들이 이 클래스로부터 나왔다.<br>
 <hr>
 HttpServlet 클래스  
-**service(HttpServletRequest, HttpServletResponse)**
-service(ServletRequest, ServletResponse)
-doGet(HttpServletRequest, HttpServletResponse)
-doPost(HttpServletRequest, HttpServletResponse)
-doOption(HttpServletRequest, HttpServletResponse)
-doPut(HttpServletRequest, HttpServletResponse)
-doTrace(HttpServletRequest, HttpServletResponse)
-doDelete(HttpServletRequest, HttpServletResponse)
-getLastModified(HttpServletRequest, HttpServletResponse)
+**service(HttpServletRequest, HttpServletResponse)**<br>
+service(ServletRequest, ServletResponse)<br>
+doGet(HttpServletRequest, HttpServletResponse)<br>
+doPost(HttpServletRequest, HttpServletResponse)<br>
+doOption(HttpServletRequest, HttpServletResponse)<br>
+doPut(HttpServletRequest, HttpServletResponse)<br>
+doTrace(HttpServletRequest, HttpServletResponse)<br>
+doDelete(HttpServletRequest, HttpServletResponse)<br>
+getLastModified(HttpServletRequest, HttpServletResponse)<br>
 (추상 클래스) HttpServlet는 servlet의 HTTP적인 측면을 반영하기 위해 service()를 재정의한다.<br>
 이는 service() 메소드가 오래된 servlet의 request와 response를 받지 않고, HTTP request와 response만 받는다는 의미이다.
 <hr>
