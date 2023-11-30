@@ -169,3 +169,5 @@ HttpServlet과 관련되지 않은 CONNECT를 제외하고 HttpServlet 클래스
 5. Idempotent(멱등) 여부: 
    - 연산을 여러 번 적용하더라도 결과가 달라지지 않는 성질
    - 연산을 여러 번 반복하여도 한 번만 수행된 것과 같은 성질
+   - GET, HEAD, PUT은 멱등이다.
+   - POST는 멱등이 아니다.
