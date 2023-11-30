@@ -30,7 +30,7 @@
 
 ## 서블릿 API
 #### servlet은 생명주기 메소드를 상속받는다.  
-Servlet interface
+Servlet interface  
 service(ServletRequest, ServletResponse)  
 init(ServletConfig)  
 destory()  
@@ -39,10 +39,10 @@ destory()
 getServletConfig()  
 getServletInfo()  
 &#8593;  
-GenericServlet 클래스
+GenericServlet 클래스  
 추상 클래스이다. 대부분 서블릿의 서블랫 행위라고 하는 것들이 이 클래스로부터 나왔다.  
 &#8658;  
-HttpServlet 클래스
+HttpServlet 클래스  
 추상 클래스이다. service() 메소드는 HTTP Request와 Response만 받아들이고 다른 어떤 서블릿 Request와 Response는 받지 않는다는 의미이다.  
 <hr>
 MyServlet 클래스  
@@ -81,3 +81,22 @@ class를 찾는 것이 첫 번째 단계이다. class를 로딩하는 것이 두
 첫 번째 client가 필요로 할 때 Container가 미리 servlet을 준비시키거나 실행 시(Just in time)에 작동시키는지에 상관없이 servlet의 service() 메소드는 servlet이 완전히 초기화되기 전까지 실행되지 않는다.  
 init()은 항상 service()에 대한 첫 번째 호출이 있기 전에 완료한다.
 
+servlet은 생성자가 시작하면서 does not exist에서 initialized로 전환된다.  
+하지만 생성자는 객체만 만들지 servlet을 만들지 않는다. 
+servlet이 되려면 객체는 servletness를 받아야 한다.
+객체가 servlet이 되면 servlet이 되므로써 고유한 이점을 얻게 된다. 
+
+## servlet 객체의 종류
+1. ServletConfig 객체
+   * servlet당 한 개의 ServletConfig 객체
+   * 배포 시 설정된 정보를 전달해주기 위해 사용한다.
+   * ServletContext에 접근하기 위해 사용한다.
+   * 파라미터는 DD에서 설정할 수 있다. 
+2. ServletContext
+   * web app당 ServletContext 1개
+   * web 파라미터에 접근하기 위해 사용
+   * 다른 부분의 application이 접근할 수 있는 application 게시판처럼 사용한다. 
+   * server 정보를 얻기 위해 사용한다. 
+3. ServletConfig과 ServletContext의 차이점
+   * 이름
+      * 
