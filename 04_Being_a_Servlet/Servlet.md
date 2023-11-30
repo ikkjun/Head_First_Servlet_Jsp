@@ -167,9 +167,8 @@ HttpServlet과 관련되지 않은 CONNECT를 제외하고 HttpServlet 클래스
    * GET은 어떤 것을 단순히 가져올 때 사용한다. 이것은 server에 어떠한 변화를 가져오지 않는다.
    * POST는 처리할 데이터를 보내기 위해 사용한다. POST를 생각할 때 생각해내야 하는 단어는 update이다. 이는 server상의 어떤 것을 바꾸기 위해 POST의 body로부터 데이터를 사용한다는 것이다.
 5. Idempotent(멱등) 여부: 
-   - 연산을 여러 번 적용하더라도 결과가 달라지지 않는 성질
-   - 연산을 여러 번 반복하여도 한 번만 수행된 것과 같은 성질
-   - 동일한 작업을 부작용 없이 계속해서 할 수 있다.
+   - HTTP / servlet 환경에서 동일 request는 server에 어떤 부작용을 야기하지 않고 두 번 이상 이루어질 수 있다는 의미이다. 
+   - idempotent는 동일한 request가 항상 동일한 response를 반환하는 것은 아니며, request가 어떤 부작용도 발생하지 않아야 한다는 것을 의미하지 않는다. 
    - GET, HEAD, PUT은 멱등이다.
    - POST는 멱등이 아니다.
 
@@ -177,7 +176,7 @@ HttpServlet과 관련되지 않은 CONNECT를 제외하고 HttpServlet 클래스
 HTTP GET은 어떤 것을 가져오는 것이지 server에 대해 어떤 것을 바꾸는 것이 아니다. 그래서 GET은 정의상 idempotent이다.<br/>
 그러나 POST는 idempotent가 아니다. POST의 body에서 제출된 데이터가 transaction으로 향한다면 그것은 되돌릴 수 없다. 그래서 doPost()를 구현할 때는 주의해야 한다. POST메소드가 한 번 이상 들어오는 경우 web app logic이 이러한 상황을 제대로 처리할 수 있도록 만들어야 한다.
 
-
+### 
 
 POST is not idempotent—the data submitted in the body of a POST might be destined for a transaction that can't be reversed. So you have to be careful with your doPostOfunctionality!
 똑등록등록큽군;!~
