@@ -29,21 +29,41 @@
 서블릿이 초기화되지 않았다는 말은 초기화 되는 중(생성자를 실행하거나 init() 메소드를 실행하거나)이거나, 소멸되는 중(destory() 메소드를 실행)이거나 존재하지 않은 것 중 하나이다.
 
 ## 서블릿 API
-#### servlet은 생명주기 메소드를 상속받는다.  
-Servlet interface  
-service(ServletRequest, ServletResponse)  
-init(ServletConfig)  
-destory()  
-&#8658; 생명주기와 관련된 메소드  
+### servlet은 생명주기 메소드를 상속받는다.  
+Servlet interface(javax.servlet.Servlet)
+**service(ServletRequest, ServletResponse)**
+**init(ServletConfig)**
+**destory()** &#8594; 생명주기 메소드
+getServletConfig()
+getServletInfo()
 <hr>  
-getServletConfig()  
-getServletInfo()  
-&#8593;  
-GenericServlet 클래스  
-추상 클래스이다. 대부분 서블릿의 서블랫 행위라고 하는 것들이 이 클래스로부터 나왔다.  
-&#8658;  
+GenericServlet 클래스(javax.servlet.GenericServlet)<br> 
+**service(ServletRequest, ServletResponse)**<br>
+**init(ServletConfig)**<br>
+init()<br>
+**destory()**<br>
+getSevletConfig()<br>
+getServletInfo()<br>
+getIniParameter(String)<br>
+geInitParameterNames()<br>
+geServletContext()<br>
+log(String)<br>
+log(String, Throwable)<br>
+추상 클래스이다. 필요한 대부분의 서블릿 메소드를 구현햇다.<br>
+대부분 서블릿의 서블랫 행위라고 하는 것들이 이 클래스로부터 나왔다.<br>
+<hr>
 HttpServlet 클래스  
-추상 클래스이다. service() 메소드는 HTTP Request와 Response만 받아들이고 다른 어떤 서블릿 Request와 Response는 받지 않는다는 의미이다.  
+**service(HttpServletRequest, HttpServletResponse)**
+service(ServletRequest, ServletResponse)
+doGet(HttpServletRequest, HttpServletResponse)
+doPost(HttpServletRequest, HttpServletResponse)
+doOption(HttpServletRequest, HttpServletResponse)
+doPut(HttpServletRequest, HttpServletResponse)
+doTrace(HttpServletRequest, HttpServletResponse)
+doDelete(HttpServletRequest, HttpServletResponse)
+getLastModified(HttpServletRequest, HttpServletResponse)
+(추상 클래스) HttpServlet는 servlet의 HTTP적인 측면을 반영하기 위해 service()를 재정의한다.<br>
+이는 service() 메소드가 오래된 servlet의 request와 response를 받지 않고, HTTP request와 response만 받는다는 의미이다.
 <hr>
 MyServlet 클래스  
 작성할 서블릿의 대부분 행위는 상위 클래스의 메소드를 상속받음으로써 해결된다. 그러므로 HTTP 메소드를 재정의 하는 일만 하면 된다.
