@@ -157,5 +157,11 @@ servlet은 client request를 다루기 위해 존재한다.
 HttpServlet과 관련되지 않은 CONNECT를 제외하고 HttpServlet 클래스의 doXXX() 메소드와 연결된다.
 
 ### GET과 POST의 차이점
-1. POST에는 body가 있다. GET은 Request line에 보낼 수 있는 파라미터 데이터의 양이 제한되어 있다.
-2. GET을 사용하면 브라우저의 input bar(주소 입력 창)에 파라미터 데이터가 노출되면서 보안에 취약하다는 단점이 있다.
+1. size
+   * POST에는 body가 있다. GET은 Request line에 보낼 수 있는 파라미터 데이터의 양이 제한되어 있다.
+2. security
+   * GET을 사용하면 브라우저의 input bar(주소 입력 창)에 파라미터 데이터가 노출되면서 보안에 취약하다는 단점이 있다.
+3. bookmarking
+   * GET request는 그대로 즐겨찾기에 추가되지만, POST request는 그렇지 않다. user가 검색 조건을 명시하고 검색했을 때, server에 새로운 데이터가 있기 때문에 일주일 뒤에 돌아와도 이전의 데이터를 보여준다.
+4. supposed to be used(사용 목적)
+   * 
