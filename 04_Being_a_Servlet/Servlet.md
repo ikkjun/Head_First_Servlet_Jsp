@@ -169,5 +169,27 @@ HttpServlet과 관련되지 않은 CONNECT를 제외하고 HttpServlet 클래스
 5. Idempotent(멱등) 여부: 
    - 연산을 여러 번 적용하더라도 결과가 달라지지 않는 성질
    - 연산을 여러 번 반복하여도 한 번만 수행된 것과 같은 성질
+   - 동일한 작업을 부작용 없이 계속해서 할 수 있다.
    - GET, HEAD, PUT은 멱등이다.
    - POST는 멱등이 아니다.
+
+#### idempotent requests
+HTTP GET은 어떤 것을 가져오는 것이지 server에 대해 어떤 것을 바꾸는 것이 아니다. 그래서 GET은 정의상 idempotent이다.<br/>
+그러나 POST는 idempotent가 아니다. POST의 body에서 제출된 데이터가 transaction으로 향한다면 그것은 되돌릴 수 없다. 그래서 doPost()를 구현할 때는 주의해야 한다. POST메소드가 한 번 이상 들어오는 경우 web app logic이 이러한 상황을 제대로 처리할 수 있도록 만들어야 한다.
+
+
+
+POST is not idempotent—the data submitted in the body of a POST might be destined for a transaction that can't be reversed. So you have to be careful with your doPostOfunctionality!
+똑등록등록큽군;!~
+
+GE1"is always considered idempotent in
+H-rTP 1.1...
+...even ifyou see code on
+the exam that uses the GET parameters in a way that causes side-effects! In other words, GET
+is idempotent according to the HTTP spec. But there's nothing to stop you from implementing a non-idempotent doGet() method inyourseNlet. The client's
+GET request is supposed to be idempotent, even if what YOU do with the data causes side-effects. Alwayskeep in mind the difference
+between the HTTP GET method and your seNlet's doGet() method.
+
+Note=t het-e at-e se1e\"al dit t e\"en七1.1ses o.f t he wt:1rd
+i七inthel+TTP/se\"1let ~'I
+1idemrotent 1j we't-e tomean七hat七hesame떠따sttanbemade七wile with no ne,ati1e tonse, 1.1entes on t he se\"1/e\". We do ~not ~ 1.1se 1idemrotent" tomean七hat 七he same떠 따stal~ ys t'etl.t\"nS七he same t-esronse, and we do NOT mean七hat a 떠 따sthas NOside e.f.fetts.
