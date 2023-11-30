@@ -239,3 +239,27 @@ public void doPost(HttpServletRequest request, HttpServletResponse response) thr
 </form>
 ```
 **HTTP POST request**
+POST ...
+color=dark&body=heavy
+
+**servlet class**
+```java
+public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+   String colorParam = request.getParameter("color");
+   String bodyParam = request.getParameter("body");
+   // colorParam 변수에는 dark가, bodyParam 변수에는 heavy가 들어 있다.
+}
+```
+
+#### parameter 하나가 여려 개의 값을 가질 때 읽는 방법
+getParameter()로 String을 반환받는 대신, array를 반환하는 getParameterValues()를 사용해야 한다.
+```java
+String one = request.getParameterValues("sizes")[0];
+String [] sizes = request.getParmeterValues("sizes");
+
+// 사용자가 선택한 값들이 무엇인지 일일이 확인하고 싶은 경우
+String [] sizes = request.getParameterValues("sizes");
+for(int x=0;x<sizes.length; x++) {
+   out.println("<br>sizes: " + sizes[x])
+}
+```
