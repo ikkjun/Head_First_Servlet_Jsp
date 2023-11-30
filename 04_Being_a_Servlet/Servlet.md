@@ -176,19 +176,66 @@ HttpServlet과 관련되지 않은 CONNECT를 제외하고 HttpServlet 클래스
 HTTP GET은 어떤 것을 가져오는 것이지 server에 대해 어떤 것을 바꾸는 것이 아니다. 그래서 GET은 정의상 idempotent이다.<br/>
 그러나 POST는 idempotent가 아니다. POST의 body에서 제출된 데이터가 transaction으로 향한다면 그것은 되돌릴 수 없다. 그래서 doPost()를 구현할 때는 주의해야 한다. POST메소드가 한 번 이상 들어오는 경우 web app logic이 이러한 상황을 제대로 처리할 수 있도록 만들어야 한다.
 
-### 
+### forms and HTTP
+form에 method="POST"를 입력하지 않으면 초기값은 HTTP GET request이다. 이는 browser가 파라미터를 request header안에 넣어서 보낸다는 것이다. request가 GET으로 오면 폼 처리에 있어서 대부분 doPost()만 만들어 놓기 때문에 문제가 발생한다.
 
-POST is not idempotent—the data submitted in the body of a POST might be destined for a transaction that can't be reversed. So you have to be careful with your doPostOfunctionality!
-똑등록등록큽군;!~
+#### 서블릿에서 doGet()과 doPost()를 다 지원하도록 만드는 방법
+doGet()을 구현하고 doPost()는 요청을 doGet()으로 넘긴다.
+```java
+public void doPost(...) throws ... {
+   doGet(request, response);
+}
+```
 
-GE1"is always considered idempotent in
-H-rTP 1.1...
-...even ifyou see code on
-the exam that uses the GET parameters in a way that causes side-effects! In other words, GET
-is idempotent according to the HTTP spec. But there's nothing to stop you from implementing a non-idempotent doGet() method inyourseNlet. The client's
-GET request is supposed to be idempotent, even if what YOU do with the data causes side-effects. Alwayskeep in mind the difference
-between the HTTP GET method and your seNlet's doGet() method.
+#### 파라미터 1개 전송 및 사용하기
+**HTML form**
+```html
+<form action="SelectBeer.do" method="post">
+   <p>Select beer characteristics</p>
+   <select name="color" size="1">
+   <option value="light">light</option>
+   <option value="amber">amber</option>
+   <option value="brown">brown</option>
+   <option value="dark">dark</option>
+   </select>
+   <center>
+   <input type="submit">
+   </center>
+</form>
+```
+**HTTP POST request**
+POST ...
+color=dark
 
-Note=t het-e at-e se1e\"al dit t e\"en七1.1ses o.f t he wt:1rd
-i七inthel+TTP/se\"1let ~'I
-1idemrotent 1j we't-e tomean七hat七hesame떠따sttanbemade七wile with no ne,ati1e tonse, 1.1entes on t he se\"1/e\". We do ~not ~ 1.1se 1idemrotent" tomean七hat 七he same떠 따stal~ ys t'etl.t\"nS七he same t-esronse, and we do NOT mean七hat a 떠 따sthas NOside e.f.fetts.
+**servlet class**
+```java
+public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+   String colorParam = request.getParameter("color");
+   // colorParam 문자 변수에는 dark라는 값이 들어 있다.
+}
+```
+
+#### 파라미터 2개 전송하기
+**HTML form**
+```html
+<form action="SelectBeer.do" method="post">
+   <p>Select beer characteristics</p>
+   COLOR:
+   <select name="color" size="1">
+      <option value="light">light</option>
+      <option value="amber">amber</option>
+      <option value="brown">brown</option>
+      <option value="dark">dark</option>
+   </select>
+   BODY:
+   <select name="body" size="1">
+      <option>light</option>
+      <option>medium</option>
+      <option>heavy</option>
+   </select>
+   <center>
+   <input type="submit">
+   </center>
+</form>
+```
+**HTTP POST request**
