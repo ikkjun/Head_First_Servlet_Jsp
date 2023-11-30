@@ -132,3 +132,7 @@ servlet이 되려면 객체는 servletness를 받아야 한다.
 
 ## servlet의 임무
 servlet은 client request를 다루기 위해 존재한다.
+
+## Request와 Response
+|**ServletRequest interface (javax.servlet.ServletRequest)**|**ServletResponse interface(javax.servlet.ServletResponse)**|
+|getAttribute(String) <br> getContentLength()|getBufferSize() <br> setContentType()|
