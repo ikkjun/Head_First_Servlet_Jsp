@@ -290,3 +290,7 @@ for(int x=0;x<sizes.length; x++) {
    InputStream input = request.getInputStream();
    ```
 
+## HttpServletResponse 객체
+response는 client에게 돌려보내는 것이다. 일반적으로 출력 스트림(보통 Writer)을 사용하여 client에게 돌아갈 HTML을 작성한다. response 객체는 I/O 출력 외에도 다른 메소드를 가지고 있다. 
+
+대부분 client에 데이터를 전송하기 위해 response 객체를 사용한다. response을 하기 위해 serContentType()와 getWriter() 두 개의 메서드를 호출한다. 그 후에 스트림에 HTML을 쓰기 위해 I/O작업을 한다. 이 외에도 헤더 정보를 설정하거나 오류를 보내고 쿠키를 추가할 때 response를 사용한다.
