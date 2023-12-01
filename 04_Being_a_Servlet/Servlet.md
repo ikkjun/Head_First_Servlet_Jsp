@@ -305,7 +305,7 @@ JAR 파일로부터 client가 코드를 얻을 수 있는 다운로드 페이지
 5. HTTP response는 이제 JAR을 표현하는 바이트가 들어있다.
 6. JAR은 client의 기계에 다운로드가 시작된다.
 
-JAR을 내려받는 servlet 코드
+### JAR을 내려받는 servlet 코드
 ```java
 public class CodeReturn extends HttpServlet {
    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -313,6 +313,7 @@ public class CodeReturn extends HttpServlet {
 
       ServletContext ctx = getServletContext();
       InputStream is = ctx.getResourceAsStream("/bookCode.jar");  // bookCode.jar이라는 자원을 input stream으로 주세요
+      // getResourceAsStream()의 인자값으로 들어오는 파일경로는 반드시 web app의 루트를 의미하는 /로 시작해야 한다. 
 
       int read = 0;
       byte[] bytes = new byte[1024];
@@ -327,3 +328,34 @@ public class CodeReturn extends HttpServlet {
    }
 }
 ```
+
+### content type
+content type은 MIME type를 의미한다. content type는 HTTP response 내에 반드시 포함되어야 하는 HTTP header이다. 프로그램이 정상적으로 작동하기 위해서 output stream을 주는 메소드(getWriter() 또는 getOutputStream())를 호출하기 전에 항상 serContentType()를 제일 먼저 호출해야 한다. 
+
+#### 일반적인 MIME 타입
+* text/html
+* application/pdf
+* video/quicktime
+* application/java
+* image/jpeg
+* application/jar
+* applicaton/octet-stream
+* application/x-zip
+
+### PrintWriter와 OutputStream
+* PrintWriter
+   * 예제
+   ```java
+   PrintWriter writer = response.getWriter();
+   writer.println("some text and HTML");
+   ```
+   * 용도
+   텍스트 데이터를 chatacter stream으로 출력한다. 
+* OutputStream
+   * 예제
+   ```java
+   ServletOutputStream out = response.getOutputStream();
+   out.write(aByteArray);
+   ```
+   * 용도
+   아무거나
