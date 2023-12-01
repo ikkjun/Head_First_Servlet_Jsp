@@ -349,7 +349,7 @@ content type은 MIME type를 의미한다. content type는 HTTP response 내에 
    PrintWriter writer = response.getWriter();
    writer.println("some text and HTML");
    ```
-   * 용도
+   * 용도<br/>
    텍스트 데이터를 chatacter stream으로 출력한다. 
 * OutputStream
    * 예제
@@ -357,5 +357,12 @@ content type은 MIME type를 의미한다. content type는 HTTP response 내에 
    ServletOutputStream out = response.getOutputStream();
    out.write(aByteArray);
    ```
-   * 용도
+   * 용도<br/>
    아무거나
+
+### setHeader와 addHeader의 차이점
+```java
+response.setHeader("foo", "bar");
+response.addHeader("foo", "bar");
+```
+setHeader()와 addHeader() 둘 다 response에 header(첫 번째 인자)와 value(두 번째 인자)를 추가할 수 있다. setHeader()는 이미 존재하는 값을 덮어 쓴다. addHeader()는 값을 하나 더 추가한다.
