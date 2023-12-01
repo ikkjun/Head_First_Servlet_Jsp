@@ -294,3 +294,36 @@ for(int x=0;x<sizes.length; x++) {
 response는 client에게 돌려보내는 것이다. 일반적으로 출력 스트림(보통 Writer)을 사용하여 client에게 돌아갈 HTML을 작성한다. response 객체는 I/O 출력 외에도 다른 메소드를 가지고 있다. 
 
 대부분 client에 데이터를 전송하기 위해 response 객체를 사용한다. response을 하기 위해 serContentType()와 getWriter() 두 개의 메서드를 호출한다. 그 후에 스트림에 HTML을 쓰기 위해 I/O작업을 한다. 이 외에도 헤더 정보를 설정하거나 오류를 보내고 쿠키를 추가할 때 response를 사용한다.
+
+### JAR 파일을 client에게 보내기
+JAR 파일로부터 client가 코드를 얻을 수 있는 다운로드 페이지를 만들었다고 가정하자. response는 HTML 페이지 대신, JAR을 표현하는 bytes를 포함하고 있어야 한다. 먼저 JAR 파일의 bytes를 읽은 다음 response의 출력 스트림에 작성한다.
+
+1. JAR 코드 파일을 다운 받는 링크는 Code.do라는 이름의 servlet을 실행하는 것이다.
+2. 브라우저는 Code.do라는 요청된 serlvet에 대한 HTTP request를 서버로 보낸다.
+3. Container는 처리를 위해 request를 CodeReturn servlet으로 보낸다.
+4. CodeReturn servlet은 Jar 바이트를 읽어와서 response로부터 출력 스트림을 받고, 출력 스트림에 JAR을 표현하는 바이트를 작성한다.
+5. HTTP response는 이제 JAR을 표현하는 바이트가 들어있다.
+6. JAR은 client의 기계에 다운로드가 시작된다.
+
+JAR을 내려받는 servlet 코드
+```java
+public class CodeReturn extends HttpServlet {
+   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+      response.setContentType("application/jar");  // 브라우저가 HTML이 아니라 JAR임을 인지하기 위해 content type를 application/jar로 설정한다.
+
+      ServletContext ctx = getServletContext();
+      InputStream is = ctx.getResourceAsStream("/bookCode.jar");  // bookCode.jar이라는 자원을 input stream으로 주세요
+
+      int read = 0;
+      byte[] bytes = new byte[1024];
+
+      // JAR 바이트를 읽은 뒤, response 객체로부터 얻은 output stream에 byte를 기록하는 것이다.
+      OutputStream os = response.getOutputStream();
+      while ((read = is.read(bytes)) != -1) {
+         os.write(bytes, 0, read);
+      }
+      os.flush();
+      os.close();
+   }
+}
+```
