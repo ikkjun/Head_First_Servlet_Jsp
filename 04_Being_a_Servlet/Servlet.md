@@ -367,13 +367,20 @@ response.addHeader("foo", "bar");
 ```
 setHeader()와 addHeader() 둘 다 response에 header(첫 번째 인자)와 value(두 번째 인자)를 추가할 수 있다. setHeader()는 이미 존재하는 값을 덮어 쓴다. addHeader()는 값을 하나 더 추가한다.
 
-### request redirect
+## request redirect
 request를 완전히 다른 URL로 redirect하거나 request를 web app 상의 다른 구성요소로 dispatch(처리를 위임)할 수 있다.
 
-#### Redirect
+### Redirect 과정
 1. client가 URL을 브라우저 주소 창에 입력한다.
 2. server나 Container로 request가 날아간다.
 3. servlet는 request가 완전히 다른 URL로 가야 한다고 결정한다.
 4. servlet은 response객체의 sendRedirect() 메소드를 호출한다.
 5. HTTP response는 상태 코드 301과 Location 헤더에 새로운 URL 값을 가지고 있다.
 6. 브라우저가 response를 받고, 상태 코드가 301인지 확인하고 Location header에 어떤 값이 있는지 확인한다.
+7. 브라우저는 이전 response 안의 Location header의 값으로 받은 URL을 사용해서 새로운 request를 만든다. 사용자는 브라우저 주소창의 URL이 바뀌었음을 인지할 수 있다.
+8. request가 redirect에 의해 유발된 것이라고 할지라도, request에 대해 특별한 것은 없다. 
+9. server는 요청된 URL에 있는 것을 접수한다.
+10. HTTP response는 다른 response와 동일하다.
+11. 브라우저는 새로운 페이지를 보여준다.
+
+### servlet redirect
