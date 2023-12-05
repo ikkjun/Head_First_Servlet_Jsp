@@ -422,3 +422,14 @@ sendRedirect("/foo/stuff.html");
 request dispatch는 server에서 일어나는 일이다. 이게 redirect와 request dispatch의 큰 차이점이다.<br/>
 redirect는 client가 일을 하게 하지만, request dispatch는 server에서 일을 한다는 것이다.<br/>
 정리: redirect = client, request dispatch = server.<br/>
+
+#### request dispatch 과정
+1. user가 servlet의 URL 주소를 주소창에 입력한다.
+2. request는 servet/Container로 간다.
+3. servlet는 request가 웹의 다른 곳으로 가야 한다고 결정한다. (이 경우에는 JSP)
+4. servlet는 아래와 같은 코드를 호출하고, response는 JSP로 넘어간다.
+```java 
+RequestDispatcher view = request.getRequestDispatcher("result.jsp");
+view.forward(request, response);
+```
+5. 브라우저는 response를 받고 user에게 보여준다. 주소창의 값이 바뀌지 않기 때문에 user는 JSP가 response를 생성한지 모른다.
