@@ -395,3 +395,5 @@ if(workdsForMe) {
    response.sendRedirect("http://www.oreilly.com");
 }
 ```
+
+#### sendRedirect()안에 relative URL사용하기
