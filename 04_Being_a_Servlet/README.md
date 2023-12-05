@@ -417,3 +417,8 @@ sendRedirect("/foo/stuff.html");
 ```
 /는 web Container의 root를 의미한다.<br/>
 새로운 URL: http://www.wickedlysmart.com/foo/stuff.html<br/>
+
+### request dispatch
+request dispatch는 server에서 일어나는 일이다. 이게 redirect와 request dispatch의 큰 차이점이다.<br/>
+redirect는 client가 일을 하게 하지만, request dispatch는 server에서 일을 한다는 것이다.<br/>
+정리: redirect = client, request dispatch = server.<br/>
