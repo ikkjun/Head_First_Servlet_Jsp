@@ -384,3 +384,14 @@ request를 완전히 다른 URL로 redirect하거나 request를 web app 상의 �
 11. 브라우저는 새로운 페이지를 보여준다.
 
 ### servlet redirect
+servlet redirect하면 브라우저가 일하게 만든다.<br />
+redirect는 servlet을 책임으로부터 완전히 벗어나게 해준다. <br />
+servlet이 일을 할 수 없다고 결정한 후에 servlet은 단순히 sendRedirect() 메소드를 호출한다.<br />
+
+```java
+if(workdsForMe) {
+   // handle the request
+} else {
+   response.sendRedirect("http://www.oreilly.com");
+}
+```
