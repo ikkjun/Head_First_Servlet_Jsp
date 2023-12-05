@@ -398,21 +398,22 @@ if(workdsForMe) {
 
 #### sendRedirect()안에 relative URL사용하기
 sendRedirect()의 인자로 http://www...로 시작하는 전체의 URL 주소를 적는 대신 relative URL을 사용할 수 있다. <br/>
+response객체에 쓰기 작업을 한 뒤에 sendRedirect()를 호출할 수 없다. <br/>
 relative URL은 /로 시작하는 것과 /이 없는 것 두 가지가 있다. <br/>
+
 client가 http://www.wickedlysmart.com/myApp/cool/bar.do를 입력했다고 하자.<br/>
 request가 bar.do servlet으로 들어가서 servlet은 relative URL과 함께 sendRedirect()를 호출한다.<br/>
-response객체에 쓰기 작업을 한 뒤에 sendRedirect()를 호출할 수 없다.
 
 1. /로 시작하지 않은 경우
 ```java
 sendRedirect("foo/stuff.html");
 ```
-Container는 원래 주소를 가지고 완전한 URL 주소를 작성한다.
+Container는 원래 주소를 가지고 완전한 URL 주소를 작성한다.<br/>
 새로운 URL: http://www.wickedlysmart.com/myApp/cool/foo/stuff.html
 
 2. /로 시작하는 경우
 ```java
 sendRedirect("/foo/stuff.html");
 ```
-/는 web Container의 root를 의미한다.
-새로운 URL: http://www.wickedlysmart.com/foo/stuff.html
+/는 web Container의 root를 의미한다.<br/>
+새로운 URL: http://www.wickedlysmart.com/foo/stuff.html<br/>
