@@ -36,3 +36,29 @@ servlet은 getServletConfig()을 상속받는다. getServletConfig 참조를 얻
 
 Container가 servlet을 초기화할 때, Container는 servlet마다 하나씩 ServletConfig을 생성한다. Container는 DD에서 servlet init parameter를 읽고, servlet init parameter를 ServletConfig로 넘겨준다. 그 다음 ServletConfig를 servlet의 init() 메서드에 넘겨준다.<br/>
 
+## Container가 servlet을 초기화할 때 servlet init parameter는 단 한 번 읽는다.
+servlet init parameter가 ServletConfig에 기록되면 servlet을 다시 배포하지 않는한 다시 읽지 않는다. 
+1. Container는 servlet init parameters를 포함하는 servlet을 위한 DD(배포 서술자)를 읽는다.
+2. Container는 새로운 ServletConfig 인스턴스를 (서블릿 당 하나씩) 만든다.
+3. Container는  각각의 servlet init parameter마다 String 타입의 name과 value의 한 쌍을 만든다.
+4. Container는 ServletConfig 참조에 이름/값으로 된 init parameters를 설정한다.
+5. Container는 servlet 클래스의 새로운 인스턴스를 생성한다.
+6. Container는 ServletConfig의 참조를 인자로 하는 servlet의 init() method를 호출한다. 
+
+## ServletConfig 테스트하기
+ServletConfig의 주요 업무는 init parameters에 대한 정보를 주는 것이다. ServletConfig는 ServletContext도 주지만, context를 보통 다른 방식으로 받고, getServletName() 메서드를 자주 사용하지 않는다. 
+
+## 어떻게 JSP가 servlet init parameter에 접근할 수 있는가?
+DD안에 있는 servlet의 init parameter안에 넣은 것과 동일한 정보를 application의 다른 부분에서 사용하기 원한다면 몇 가지 작업을 완료해야 한다.
+```java
+// doPost() 메소드 안
+String color = request.getParameter("color");
+
+BeerExpert be = new BeerExpert();
+List result = be.getBrands(color);
+
+request.setAttribute("styles",result);
+```
+1. request객체로부터 client가 고른 색깔을 얻는다.
+2. 그 다음 인스턴스화를 하고, MODEL을 이용해서 VIEW에 필요한 정보를 얻는다.
+3. 그 다음 request의 "attribute"를 설정하고, request를 JSP가 처리하도록 넘긴다(forward).
