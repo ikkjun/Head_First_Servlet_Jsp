@@ -86,3 +86,8 @@ param-name과 paramvalue를 servlet init parameters와 동일하게 넘겨쥰다
 <context-param>은 전체 app을 위한 것이므로 개별 <servlet> 원소 안에 들어가지 않는다. <context-param>은 <web-app>안에 넣어야 하지만 <servlet> 밖에 위치해야 한다.
 
 **servlet code:**
+```java
+out.println(getServletContext().getInitParameter("adminEmail"));
+```
+모든 servlet은 getServletContext() 메소드를 상속받는다. <br/>
+getServletContext() 메소드는 ServletContext 객체를 반환한다. 그리고 그 객체의 메소드 중 하나가 getInitParameter()이다.
