@@ -62,3 +62,11 @@ request.setAttribute("styles",result);
 1. request객체로부터 client가 고른 색깔을 얻는다.
 2. 그 다음 인스턴스화를 하고, MODEL을 이용해서 VIEW에 필요한 정보를 얻는다.
 3. 그 다음 request의 "attribute"를 설정하고, request를 JSP가 처리하도록 넘긴다(forward).
+
+### init parameter limits
+request 객체 속성에 이메일 주소를 설정할 수 하지만, request 객체를 받는 JSP하고만 정보를 공유한다. 
+
+### Context init parameters가 답이다.
+
+Context init parameters 1⁄4'Ork just like ser1let init parameters, except context parameters are available to the entire 1⁄4'ebapp, not just
+a single servlet. So that means any servlet andJ SP in the app automatically has access to the context init parameters, so \-Ve don't have to 1⁄4'Orry about configuring the DD for every servlet, and 1⁄4'hen the value changes, you only have to change it one place!
