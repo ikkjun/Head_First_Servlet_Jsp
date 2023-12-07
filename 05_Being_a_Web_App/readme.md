@@ -67,6 +67,22 @@ request.setAttribute("styles",result);
 request 객체 속성에 이메일 주소를 설정할 수 하지만, request 객체를 받는 JSP하고만 정보를 공유한다. 
 
 ### Context init parameters가 답이다.
+context parameters가 하나의 servlet만 사용하는 것이 아니라 전체의 web app에서 사용할 수 있다는 점을 제외하고, Context init parameters는 servlet init parameters와 정확히 동일한 방식으로 작동한다. 이것은 web app에 있는 어떠한 servlet이나 JSP는 context init parameters에 접근할 권한이 있다는 것을 의미한다. 
 
-Context init parameters 1⁄4'Ork just like ser1let init parameters, except context parameters are available to the entire 1⁄4'ebapp, not just
-a single servlet. So that means any servlet andJ SP in the app automatically has access to the context init parameters, so \-Ve don't have to 1⁄4'Orry about configuring the DD for every servlet, and 1⁄4'hen the value changes, you only have to change it one place!
+**In the DD(web.xml) file:**
+```html
+<servlet>
+  <servlet-name>BeerParamTests</servlet-name>
+  <servlet-class>TestInitParams</servlet-class>
+</servlet>
+
+<context-param>
+  <param-name>adminEmail</param-name>
+  <param-value>ikjun96@gmail.com</param-value>
+</context-param>
+```
+<servlet> 원소 안에 있던 <init-param> 원소를 모두 삭제했다.<br/>
+param-name과 paramvalue를 servlet init parameters와 동일하게 넘겨쥰다. 단, 이 항목은 <init-param> 대신 <context-param> 안에 있다.<br/>
+<context-param>은 전체 app을 위한 것이므로 개별 <servlet> 원소 안에 들어가지 않는다. <context-param>은 <web-app>안에 넣어야 하지만 <servlet> 밖에 위치해야 한다.
+
+**servlet code:**
