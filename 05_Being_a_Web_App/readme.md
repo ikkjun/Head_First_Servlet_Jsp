@@ -30,13 +30,13 @@ Web Container Model
 ```java
 out.println(getServletConfig().getInitParameter("adminEmail"));
 ```
-
-## servlet이 초기화 된 다음 servlet init parameter를 사용할 수 있다.
+## servlet init parameter
+### servlet이 초기화 된 다음 servlet init parameter를 사용할 수 있다.
 servlet은 getServletConfig()을 상속받는다. getServletConfig 참조를 얻은 뒤에 getInitParameter()를 호출할 수 있다. 하지만 이 메서드를 생성자에서 호출할 수 없다. Container가 servlet의 init()을 호출하고 난 뒤에, servlet은 servlet의 정체성을 갖는다.<br/>
 
 Container가 servlet을 초기화할 때, Container는 servlet마다 하나씩 ServletConfig을 생성한다. Container는 DD에서 servlet init parameter를 읽고, servlet init parameter를 ServletConfig로 넘겨준다. 그 다음 ServletConfig를 servlet의 init() 메서드에 넘겨준다.<br/>
 
-## Container가 servlet을 초기화할 때 servlet init parameter는 단 한 번 읽는다.
+### Container가 servlet을 초기화할 때 servlet init parameter는 단 한 번 읽는다.
 servlet init parameter가 ServletConfig에 기록되면 servlet을 다시 배포하지 않는한 다시 읽지 않는다. 
 1. Container는 servlet init parameters를 포함하는 servlet을 위한 DD(배포 서술자)를 읽는다.
 2. Container는 새로운 ServletConfig 인스턴스를 (서블릿 당 하나씩) 만든다.
@@ -45,10 +45,10 @@ servlet init parameter가 ServletConfig에 기록되면 servlet을 다시 배포
 5. Container는 servlet 클래스의 새로운 인스턴스를 생성한다.
 6. Container는 ServletConfig의 참조를 인자로 하는 servlet의 init() method를 호출한다. 
 
-## ServletConfig 테스트하기
+### ServletConfig 테스트하기
 ServletConfig의 주요 업무는 init parameters에 대한 정보를 주는 것이다. ServletConfig는 ServletContext도 주지만, context를 보통 다른 방식으로 받고, getServletName() 메서드를 자주 사용하지 않는다. 
 
-## 어떻게 JSP가 servlet init parameter에 접근할 수 있는가?
+### 어떻게 JSP가 servlet init parameter에 접근할 수 있는가?
 DD안에 있는 servlet의 init parameter안에 넣은 것과 동일한 정보를 application의 다른 부분에서 사용하기 원한다면 몇 가지 작업을 완료해야 한다.
 ```java
 // doPost() 메소드 안
@@ -91,3 +91,28 @@ out.println(getServletContext().getInitParameter("adminEmail"));
 ```
 모든 servlet은 getServletContext() 메소드를 상속받는다. <br/>
 getServletContext() 메소드는 ServletContext 객체를 반환한다. 그리고 그 객체의 메소드 중 하나가 getInitParameter()이다.
+
+### context vs. servlet init parameters
+servlet init parameters만 DD 파일 내에 init이 있을지라도, 둘 다  init parameter으로 여겨진다.
+
+||Context init parameters|servlet init parameters|
+|---|---|---|
+|Deployment Descriptor| <web-app> 항목 내에 작성해야지 <servlet> 항목 안에 작성하면 안 된다.<br/>
+```html
+<web-app>
+  <context-param>
+    <param-name>foo</param-name>
+    <param-value>bar</param-value>
+  <context-param>
+</web-app>
+```
+| <servlet> 항목 안에 작성한다.<br/>
+```html
+<servlet>
+  <init-param>
+    <param-name>foo</param-name>
+    <param-value>bar</param-value>
+  </init-param>
+</servlet>
+```
+|
