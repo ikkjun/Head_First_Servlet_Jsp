@@ -101,3 +101,19 @@ servlet init parameters만 DD 파일 내에 init이 있을지라도, 둘 다  in
 |servlet code|getServlet.Context().getInitParameter("foo");|getServletConfig().getInitParameter("foo");|
 |Availability|web app에 존재하는 어떠한 servlet이나 JSP.|\<init-param>이 설정된 서블릿에만.|
 |개수|전체 web app마다 ServletConteext는 한 개|servlet당 한 개|
+
+### web app initialization
+1. Container가 DD를 읽은 뒤, 각각의 <context-param> 마다 name과 value String 쌍을 만든다.
+2. Container는 새로운 ServletContext 인스턴스를 만든다.
+3. Container는 ServletContext에 context init parameter 각각의 name과 value 쌍에  참조를 넘겨준다.
+4. 하나의 web app의 부분으로서 배포된 모든 servlet과 JSP는 동일한 ServletContext에 접근할 수 있다.
+
+init parameter라고 적혀있다면 servlet init parameter라고 생각하면 된다. DD에서 init param이라는 말은 servlet parameter에만 있기 때문이다. 
+
+## ServletContext
+ServletContext는 JSP나 서블릿을 Container 또는 web app의 다른 부분과 연결시켜 준다. 
+
+### 두 가지 방식으로 ServletContext를 받을 수 있다.
+1. getServletConfig().getServletContext().getInitParameter()
+ServletConfig 객체는 ServletContext에 대한 참조를 가지고 있다.
+2. this.getServletContext().getInitParameter()
