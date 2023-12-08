@@ -98,21 +98,17 @@ servlet init parameters만 DD 파일 내에 init이 있을지라도, 둘 다  in
 ||Context init parameters|servlet init parameters|
 |---|---|---|
 |Deployment Descriptor| <web-app> 항목 내에 작성해야지 <servlet> 항목 안에 작성하면 안 된다.<br/>
-```html
 <web-app>
   <context-param>
     <param-name>foo</param-name>
     <param-value>bar</param-value>
   <context-param>
 </web-app>
-```
 | <servlet> 항목 안에 작성한다.<br/>
-```html
 <servlet>
   <init-param>
     <param-name>foo</param-name>
     <param-value>bar</param-value>
   </init-param>
 </servlet>
-```
 |
