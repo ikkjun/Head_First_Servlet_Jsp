@@ -97,16 +97,7 @@ servlet init parameters만 DD 파일 내에 init이 있을지라도, 둘 다  in
 
 ||Context init parameters|servlet init parameters|
 |---|---|---|
-|Deployment Descriptor| \<web-app> 항목 내에 작성해야지 <servlet> 항목 안에 작성하면 안 된다.|<\servlet> 항목 안에 작성한다.|
+|Deployment Descriptor| \<web-app> 항목 내에 작성해야지 <\servlet> 항목 안에 작성하면 안 된다.|<\servlet> 항목 안에 작성한다.|
 |servlet code|getServlet.Context().getInitParameter("foo");|getServletConfig().getInitParameter("foo");|
 |Availability|web app에 존재하는 어떠한 servlet이나 JSP.|<\init-param>이 설정된 서블릿에만.|
 |개수|전체 web app마다 ServletConteext는 한 개|servlet당 한 개|
-
-There's only one ServletContext for an entire wei:>app, and all the parts of the wei:>app share it. But each servlet in the app has its own ServletConfig. The Container makes a ServletContext when a wei:> app is deployed, and makes the context availai:>le to each Servlet and
-Web app initialization:
-■ Coritairier reads the DD arid creates a riame/value Stririg pair for each <coritext-param>.
-■ Coritairier creates a riew iristarice of ServletCoritext.
-■ Container gives the ServletContext a reference to each name/value pair of the context init parameters.
-■ Every servlet and JSP deployed as part of a single 'Neb app
-has access to that same ServletContext.
-JSP (which i:>ecomes a servlet) in the wei:>app
