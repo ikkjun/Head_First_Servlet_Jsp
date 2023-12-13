@@ -120,3 +120,7 @@ ServletConfig 객체는 ServletContext에 대한 참조를 가지고 있다.
 
 ### context paameter limitations
 init parameter는 String만 된다. database에 DataSource 객체를 저장할 수는 없을까?
+
+## context listener
+context initialization event에 리스닝 하는 것을 원한다. 이를 이용하면 context init parameter를 얻을 수 있고, app이 client에게 서비스 하기 전에 특정 코드를 실행할 수 있다.<br/>
+이것을 하기 위해 servlet이나 JSP가 아닌 분리된 class를 필요로 한다. 그 class는 ServletContext의 두 가지 중요한 event인 initialization과 destruction을 listen할 수 있는 것이어야 한다. 그 분리된 class는 javax.servlet.ServletContextListener를 구현한다.
