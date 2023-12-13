@@ -118,3 +118,5 @@ ServletContext는 JSP나 서블릿을 Container 또는 web app의 다른 부분�
 ServletConfig 객체는 ServletContext에 대한 참조를 가지고 있다.
 2. this.getServletContext().getInitParameter()
 
+### context paameter limitations
+init parameter는 String만 된다. database에 DataSource 객체를 저장할 수는 없을까?
