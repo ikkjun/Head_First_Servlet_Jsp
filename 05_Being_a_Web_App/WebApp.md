@@ -143,3 +143,6 @@ public class MyServletContextListener implements ServletContextListener {
 ### HttpSessionBindingListener와 HttpSessionAttributeListener 차이점
 HttpSessionBindingListener: 속성 자신이 세션에 속성으로 추가, 제거되었는지 알기 위해 사용<br/>
 HttpSessionAttributeListener: 세션에 어떤 속성이라도 속성이 추가, 제거, 수정되는 이벤트가 발생하는지 알고 싶을 때 사용<br/>
+
+## 속성이란?
+3개의 서로 다른 servlet API객체 - ServletContext, HttpServletRequest, HttpSession - 중 하나에 설정하는(binding) 객체를 말한다. map 인스턴스 변수에 String과 value 쌍으로 저장하는 것으로 단순히 생각할 수 있다. 현실에서는 실제로 어떻게 구현되어 있는지보다, attrubute가 존재하는 범위가 더 중요하다. 
