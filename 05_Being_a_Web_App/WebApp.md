@@ -146,3 +146,11 @@ HttpSessionAttributeListener: 세션에 어떤 속성이라도 속성이 추가,
 
 ## 속성이란?
 3개의 서로 다른 servlet API객체 - ServletContext, HttpServletRequest, HttpSession - 중 하나에 설정하는(binding) 객체를 말한다. map 인스턴스 변수에 String과 value 쌍으로 저장하는 것으로 단순히 생각할 수 있다. 현실에서는 실제로 어떻게 구현되어 있는지보다, attrubute가 존재하는 범위가 더 중요하다. 
+
+### 세 가 생존범위: context, request, session
+#### Context Attribute
+어플리케이션 안에 있는 누구든지 접근할 수 있다.
+#### Session Attribute
+특정한 HttpSession에 접근 권한을 가진 것만 접근할 수 있다.
+#### Request Attribute
+특정한 ServletRequest에 접근 권한을 가진 것만 접근할 수 있다.
