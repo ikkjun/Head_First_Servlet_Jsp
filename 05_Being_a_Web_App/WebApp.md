@@ -170,3 +170,9 @@ enumeration getAttributeNames()
 context의 생존범위는 thread-safe하지 않다. 이는 app 안에 있는 어떤 것이든 context attribute에 접근할 수 있고, 이는 다양한 servlet을 의미하기 때문이다. 그리고 다양한 servlet은 다양한 스레드를 의미한다. 왜나하면 요청들은 동시에 서로 다른 스레드에서 처리되기 때문이다. 이것은 요청이 동일한 servlet에서 들어온 것인지 다른 servlet에서 들어온 것인지에 상관 없이 발생한다.
 
 #### 어떻게 하면 context attribute를 thread-safe하게 만들 수 있을까?
+service 메소드를 동기화하는 것은 context attribute를 보호할 수 없다. <br/>
+service 메소드를 동기화한다는 것은 한 번에 오직 하나의 servlet 메소드만 실행된다는 의미이다. 하지만 이는 다른 servlet이나 JSP가 속성에 접근하는 것을 마지 못한다는 것은 아니다. <br/>
+service 메소드를 동기화하는 것은 동일한 servlet으로부터 다른 스레드가 context 속성에 접근하는 것을 막을 수 있겠지만, 완전히 다른 servlet의 스레드가 수정하는 것은 막지 못한다.
+
+Synchronizing the service method means that only one thread in a servlet can be running at a time... but it doesn't stop other servlets orJ SPs from accessing the attribute!
+Synchronizing the service method would stop other threads from the same servlet from accessing the context attributes, but it won't do anything to stop a completely different servlet.
