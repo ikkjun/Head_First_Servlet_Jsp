@@ -168,3 +168,5 @@ enumeration getAttributeNames()
 
 ### attribute의 어두운 면
 context의 생존범위는 thread-safe하지 않다. 이는 app 안에 있는 어떤 것이든 context attribute에 접근할 수 있고, 이는 다양한 servlet을 의미하기 때문이다. 그리고 다양한 servlet은 다양한 스레드를 의미한다. 왜나하면 요청들은 동시에 서로 다른 스레드에서 처리되기 때문이다. 이것은 요청이 동일한 servlet에서 들어온 것인지 다른 servlet에서 들어온 것인지에 상관 없이 발생한다.
+
+#### 어떻게 하면 context attribute를 thread-safe하게 만들 수 있을까?
