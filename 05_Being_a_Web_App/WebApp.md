@@ -174,14 +174,9 @@ service 메소드를 동기화하는 것은 context attribute를 보호할 수 �
 service 메소드를 동기화한다는 것은 한 번에 오직 하나의 servlet 메소드만 실행된다는 의미이다. 하지만 이는 다른 servlet이나 JSP가 속성에 접근하는 것을 마지 못한다는 것은 아니다. service 메소드를 동기화하는 것은 동일한 servlet의 스레드가 context 속성에 접근하는 것을 막을 수 있겠지만, 완전히 다른 servlet의 스레드가 수정하는 것은 막지 못한다.
 
 ### context attribute를 보호하는 전형적인 방법은 context 객체 자체를 동기화 하는 것이다.
-context에 접근하는 모두가 context 객체에 있는 lock에 접근해야만 한다면, 한 번에 오직 하나의 스레드만이 context attribute를 얻거나 설정할 수 있다.
+context에 접근하는 모두가 context 객체에 있는 lock에 접근해야만 한다면, 한 번에 오직 하나의 스레드만이 context attribute를 얻거나 설정할 수 있다. 하지만 여기에도 조건이 있다. 동일한 context attribute
 
-The typical way to protect the contex:t attribute is to
-synchronize ON the context object itself. If everyone
-accessing the context has to first get the lock on the context
-object, then you're guaranteetl that only one threatl at a
-time can be getting or setting the context attribute. But...
-there's still an ifthere. It only works if all of the other code that
+ It only works if all of the other code that
 manipulates the same context attributes ALSO .rynchronizes on the
 ServletContext. If cotle tloesn't ask for the lock, then that cotle
 is still free to hit the context attributes. But if you're tlesigning
