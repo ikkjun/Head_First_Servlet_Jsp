@@ -175,3 +175,5 @@ service 메소드를 동기화한다는 것은 한 번에 오직 하나의 servl
 
 ### context attribute를 보호하는 전형적인 방법은 context 객체 자체를 동기화 하는 것이다.
 context에 접근하는 모두가 context 객체에 있는 lock에 접근해야만 한다면, 한 번에 오직 하나의 스레드만이 context attribute를 얻거나 설정할 수 있다. 하지만 여기에도 조건이 있다. 동일한 context attribute를 다루는 모든 코드들이 ServletContext에 대하여 lock을 걸어야 작동한다. web app을 디자인하고 있다면, 모든 사람들이 attribute에 접근하기 전에 lock을 걸게 결정할 수 있다.
+
+### session attribute는 thread-safe한가?
