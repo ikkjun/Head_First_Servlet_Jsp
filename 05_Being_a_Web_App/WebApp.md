@@ -177,3 +177,7 @@ service 메소드를 동기화한다는 것은 한 번에 오직 하나의 servl
 context에 접근하는 모두가 context 객체에 있는 lock에 접근해야만 한다면, 한 번에 오직 하나의 스레드만이 context attribute를 얻거나 설정할 수 있다. 하지만 여기에도 조건이 있다. 동일한 context attribute를 다루는 모든 코드들이 ServletContext에 대하여 lock을 걸어야 작동한다. web app을 디자인하고 있다면, 모든 사람들이 attribute에 접근하기 전에 lock을 걸게 결정할 수 있다.
 
 ### session attribute는 thread-safe한가?
+세션은 client와의 대화 상태를 유지하기 위한 객체이다.
+Think about it.
+We haven't talked about HTTP sessions in detail yet (we will in the Sessions chapter), but you already know that a session is an object used to maintain conversational state with a client. The session persists across multiple requests from the same client. But it's still just one client we're talking about.
+And if it's one client, and a single client can be in only one request at a time, doesn't that automatically mean that sessions are thread-safe? In other words, even if multiple servlets are involved, at any given moment there's only one request from that particular client... so there's only one thread operating on that session at a time. Right?
