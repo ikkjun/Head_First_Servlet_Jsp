@@ -179,10 +179,8 @@ context에 접근하는 모두가 context 객체에 있는 lock에 접근해야�
 ### session attribute는 thread-safe한가?
 세션은 client와의 대화 상태를 유지하기 위한 객체이다. 하나의 client가 있다면, 그리고 하나의 client가 한 번에 오직 하나의 요청만 처리할 수 있다면, 자동적으로 세션이 thread-safe라고 할 수 있다. 다시 말하면 여러 개의 servlet이 포함되어 있다고 하더라도, 특정한 어느 시점에서 그 특정한 servlet에 대한 요청은 하나이다. 즉, 한 시점에 작동하는 스레드는 오직 하나라는 것이다.
 <br/>
-그러나 동일한 client가 동시에 하나 이상의 요청을 보낸다면 session attribute는 thread-safe할까? client는 새로운 브라우저를 열 수 있다. 그래서 container는 client를 위해 여전히 동일한 session을 사용할 수 있다. 
+그러나 동일한 client가 동시에 하나 이상의 요청을 보낸다면 session attribute는 thread-safe할까? client는 새로운 브라우저를 열 수 있다. 브라우저의 다른 인스턴스 container는 client를 위해 여전히 동일한 session을 사용할 수 있다. 그러므로 container는 두 번째 window로부터 들어온 요청도 동일한 세션으로 처리할 수 있다. 그래서 session attribute도 안전하지 않으므로 보호되어야 한다. 이를 위해 HttpSession에 동기화를 해야 한다.
 <br/>
 
-
-Very wise advice, master! I have it! The client could open a new browser window! So the Container can still use the same session for a client, even though it's coming from a different instance of the browser?
 
 Yes! The Container can see the request from the second windmv as coming from the same session.
