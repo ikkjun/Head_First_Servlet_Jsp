@@ -181,3 +181,5 @@ context에 접근하는 모두가 context 객체에 있는 lock에 접근해야�
 <br/>
 그러나 동일한 client가 동시에 하나 이상의 요청을 보낸다면 session attribute는 thread-safe할까? client는 새로운 브라우저를 열 수 있다. 브라우저의 다른 인스턴스 container는 client를 위해 여전히 동일한 session을 사용할 수 있다. 그러므로 container는 두 번째 window로부터 들어온 요청도 동일한 세션으로 처리할 수 있다. 그래서 session attribute도 안전하지 않으므로 보호되어야 한다. 이를 위해 HttpSession에 동기화를 해야 한다. 이 때 가능한 한 동기화 블럭을 작게 만들어야 한다. 그래야 다른 스레드가 이 코드를 실행할 수 있다. 
 <br/>
+
+### SingleThreadModel은 인스턴스 변수를 보호하기 위해 디자인되었다.
