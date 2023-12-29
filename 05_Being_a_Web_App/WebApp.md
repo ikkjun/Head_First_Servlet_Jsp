@@ -183,3 +183,4 @@ context에 접근하는 모두가 context 객체에 있는 lock에 접근해야�
 <br/>
 
 ### SingleThreadModel은 인스턴스 변수를 보호하기 위해 디자인되었다.
+어떤 두 스레드도 동시에 이 servlet의 서비스 메소드를 실행할 수 없다.
