@@ -198,3 +198,8 @@ context에 접근하는 모두가 context 객체에 있는 lock에 접근해야�
 아래와 같은 두 가지 방식으로 문제를 해결할 수 있다.
 1. 변수를 인스턴스 변수가 아닌 서비스 메소드의 지역 변수로 선언하기.
 2. Context, Session, Request 중에서 가장 적당한 속성의 생존범위를 사용하기.
+
+### Request attributes and Request dispatching
+
+Request attributes make sense when you want some other component of the app to take over all or part of the request. Our typical, simple example is an MVC app that starts with a servlet controller, but ends with a JSP view. The controller communicates with the model, and gets back data that the view needs in order to build the response. There's no reason to put the data in a context or session attribute, since it applies only to this request, so we put it in the request scope.
+So how do we make another part of the component take over the request? With a RequestDispatcher.
