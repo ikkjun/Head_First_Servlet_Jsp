@@ -190,4 +190,6 @@ context에 접근하는 모두가 context 객체에 있는 lock에 접근해야�
 2. pool로 요청을 처라는 방법
 컨테이너가 서블릿 인스턴스 풀을 만드는 것이다. 요청이 동시에 여러개가 들어오면 각각의 서블릿 인스턴스가 요청을 하나씩 처리하는 방식이다.
 
-### request 속성은 thread-safe하다
+### request 속성은 thread-safe하다.
+지역변수를 이야기 할 때 메소드 파라미터를 포함이 된다. That's it. 멀티 스레딩에 의해 (We include method parameters when we say
+"local variables"). Everything else is subject to manipulation by multiple threads, unless you do something to stop it.
