@@ -200,6 +200,5 @@ context에 접근하는 모두가 context 객체에 있는 lock에 접근해야�
 2. Context, Session, Request 중에서 가장 적당한 속성의 생존범위를 사용하기.
 
 ### Request attributes and Request dispatching
+request attribute는 app의 다른 component가 request의 전부 또는 일부분을 넘겨받기 위해 사용한다. 전형적이고 단순한 예시는 servlet controller로 시작하지만 JSP view로 끝나는 MVC app이다. servlet controller는 model과 통신하여 response를 만들기 위해 view에게 필요한 데이터를 넘겨준다. 단지 이번 요청에 대해서만 사용할 데이터이기 때문에, 데이터를 context나 session attribute에 넣을 이유가 없어서 request scope에 넣는 것이 낫다. component의 다른 부분이 request를 넘겨받는 방법은 RequestDispatcher를 사용하면 된다.
 
-Request attributes make sense when you want some other component of the app to take over all or part of the request. Our typical, simple example is an MVC app that starts with a servlet controller, but ends with a JSP view. The controller communicates with the model, and gets back data that the view needs in order to build the response. There's no reason to put the data in a context or session attribute, since it applies only to this request, so we put it in the request scope.
-So how do we make another part of the component take over the request? With a RequestDispatcher.
