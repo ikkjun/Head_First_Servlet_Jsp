@@ -203,7 +203,9 @@ context에 접근하는 모두가 context 객체에 있는 lock에 접근해야�
 request attribute는 app의 다른 component가 request의 전부 또는 일부분을 넘겨받기 위해 사용한다. 전형적이고 단순한 예시는 servlet controller로 시작하지만 JSP view로 끝나는 MVC app이다. servlet controller는 model과 통신하여 response를 만들기 위해 view에게 필요한 데이터를 넘겨준다. 단지 이번 요청에 대해서만 사용할 데이터이기 때문에, 데이터를 context나 session attribute에 넣을 이유가 없어서 request scope에 넣는 것이 낫다. component의 다른 부분이 request를 넘겨받는 방법은 RequestDispatcher를 사용하면 된다.
 
 ### RequestDispatcher 베일을 벗기다
-RequestDispatchers have only two methods forward and include). Both take the request and response objects (which the component you're forwarding to will need to finish the job). Of the two methods, forward, is by far the most popular. It's very unlikely you'll use the include method from a controller servlet; however, behind the scenes the include method is being used by JSPs in the <jsp:include > standard action (which we'll review in chapter 8). You can get a RequestDispatcher in two ways: from the request or from the context. Regardless of where you get it, you have to tell it the web component to which you're forwarding the request. In other words, the servlet or JSP that'll take over.
+RequestDispatcher는 오직 두 개의 메소드, forward()와 include()만 있다. 둘 다 request와 response 객체를 인자로 받는다. 두 개의 메소드 중 forward가 가장 인기가 있다. controller servlet에서 include 메소드를 거의 사용하지 않는다. 하지만 JSP의 <jsp:include> 안에서 include 메소드는 사용된다. 
+
+ You can get a RequestDispatcher in two ways: from the request or from the context. Regardless of where you get it, you have to tell it the web component to which you're forwarding the request. In other words, the servlet or JSP that'll take over.
 «interface»
 RequestDispatcher
 forward (ServietRequest, ServietResponse)
