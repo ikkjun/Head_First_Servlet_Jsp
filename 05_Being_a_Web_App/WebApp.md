@@ -204,18 +204,3 @@ request attribute는 app의 다른 component가 request의 전부 또는 일부�
 
 ### RequestDispatcher 베일을 벗기다
 RequestDispatcher는 오직 두 개의 메소드, forward()와 include()만 있다. 둘 다 request와 response 객체를 인자로 받는다. 두 개의 메소드 중 forward가 가장 인기가 있다. controller servlet에서 include 메소드를 거의 사용하지 않는다. 하지만 JSP의 <jsp:include> 안에서 include 메소드는 사용된다. RequestDispatcher를 request나 context로부터 얻을 수 있다. 어디서 얻든지 간에, 해당 RequestDispatcher에게 전송하려는 request을 처리할 web component를 알려주어야 한다. 다시 말해, 이는 요청을 이어받을 servlet이나 JSP를 의미한다.
-
-«interface»
-RequestDispatcher
-forward (ServietRequest, ServietResponse)
-include(ServletRequest, ServletResponse)
-javax.servlet. RequestDispatcher
-Getting a RequestDispatcher from a ServletRequest
-RequestDispatcher view = request .getRequestDispatcher ("result.jsp") ;
-The getRequestDispatcher) method in ServletRequest takes a String path for the resource to which you're forwarding the request. If the path starts with a forward slash ("*), the Container sees that as "starting from the root of this web app". If the path does NOT start with a forward slash, it's considered relative to the original request. But you can't try to trick the Container into looking outside the current web app. In other words, just because you have lots of "....." doesn't mean it'll work if it takes you past the root of your current web app!
-へ
-This is a relative path (because there's no initial forward slash ("/"). So in this case, san Cortan er ate for vete in the
-We'll cover the details of relative paths and logical locations in the Deployment chapter.)
-Getting a RequestDispatcher from a ServletContext
-RequestDispatcher view = getServletContext () •getRequestDispatcher ("/result.jsp") ;
-Like the equivalent method in ServletRequest, this getRequestDispatcher) method takes a String path for the resource to which you're forwarding the request, EXCEPT you cannot specify a path relative to the current resource (the one that received this request). That means you must start the path with a forward slash!
